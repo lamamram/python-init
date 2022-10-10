@@ -73,3 +73,27 @@ lst_bis is lst, lst_ter is lst
 # inversion de séquence
 chaine[::-1]
 # %%
+# boucle for
+# les types de données qui rentrent dans une
+# boucle for son dits itérable
+for letter in chaine:
+    print(letter)
+
+for elem in lst:
+    print(elem)
+
+# %%
+# mutabilité vs immutabilité
+# mutabilité: opération interne sur la variable
+# l'emplacement mém ne change pas
+lst[0] = -1
+lst
+# %%
+# immutabilité
+# tup[0] = -1
+# chaine[0] = "A"
+# changement par réaffectation uniquement
+chaine = "A bon chat bon rat"
+chaine = chaine.capitalize()
+chaine
+# %%
