@@ -90,3 +90,12 @@ while True:
 # else après for ou while: voir exo moyenne
 
 # %%
+# instruciton pass: sert à structurer un code
+# àvenir (bloc vide)
+# ...programme...
+cond = True
+
+if cond:
+    # TODO
+    pass
+# %%
