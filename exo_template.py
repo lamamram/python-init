@@ -38,3 +38,10 @@ while "((" in _template:
     )
 _template
 # %%
+# porter le script ci dessus en fonction
+# 1. choisir un nom
+# 2. choisir les paramètres pertinents avec leur ordre d'importance
+# obligatoires (sans valeur par défaut), optionnels (valeurs + souvent utilisée)
+# 3. gérer la valeur de retour
+
+ 
