@@ -87,3 +87,6 @@ while True:
     # sortir immédiatement si cond
     if b > 100: break
 # %%
+# else après for ou while: voir exo moyenne
+
+# %%
