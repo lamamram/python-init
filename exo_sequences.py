@@ -65,3 +65,20 @@ if not stop and len(numbers):
     print("moyenne de {1} : {0:.2f}".format(moy, numbers))
     print(f"moyenne de {numbers} : {moy + 2:.2f}")
 # %%
+# version avec manipulation de la boucle
+values = input("Veuillez entrez des nombres séparés par ,: ")
+numbers = []
+for value in values.split(","):
+    if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()):
+        numbers.append(int(value))
+    else:
+        print(f"{value} is not a number")
+        break
+# le bloc else s'exécute si on ne rencontre jamais break
+# dans la boucle
+# for: on itère jusqu'au bout de l'itérable
+# while: la condition du while devient fausse
+else:
+    if len(numbers):
+        moy = sum(numbers)/len(numbers)
+        print(f"moyenne de {numbers} : {moy + 2:.2f}")
