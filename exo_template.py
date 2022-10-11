@@ -52,6 +52,12 @@ def parse_template(tpl: str, contents: dict, slots=("{{", "}}"), default="N/A"):
         # penser à mettre jour la variable avec la transformation
         tpl = tpl.replace(
             slots[0] + key + slots[1], 
-            contents.get(key, default)
+            str(contents.get(key, default))
         )
     return tpl
+
+_tpl = "name: {{name}}, firstname: {{firstname}}, age: {{age}}, password: {{password}}"
+contents = {"name": "lamam", "firstname": "matt", "age": 38}
+
+parse_template(_tpl, contents, default="******")
+# %%
