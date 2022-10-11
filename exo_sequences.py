@@ -50,7 +50,18 @@ for value in values.split(","):
         print(value, "is not a number")
         stop = True
 
-if not stop and len(numbers) != 0:
+# len(numbers) renvoie un entier
+# dans un if il est évalué en tant que booléen 
+# => True si != 0 et False si == 0
+if not stop and len(numbers):
     moy = sum(numbers)/len(numbers)
-    print("moyenne de ", numbers, ":", round(moy, 2))
+    # à ne pas faire !!
+    # print("moyenne de " + str(numbers) + " : " + str(round(moy, 2)))
+    # on peut faire
+    # print("moyenne de ", numbers, ":", round(moy, 2))
+    # ...mais obsolète
+    # print("moyenne de %s : %.2f" % (numbers, round(moy, 2)))
+    # péférable
+    print("moyenne de {1} : {0:.2f}".format(moy, numbers))
+    print(f"moyenne de {numbers} : {moy + 2:.2f}")
 # %%
