@@ -20,3 +20,16 @@ injections = {
     "key2": "content2",
     "key3": "content3"
 }
+
+# %%
+while "((" in _template:
+    start_index = _template.index("((") + len("((")
+    end_index = _template.index("))")
+    key = _template[start_index:end_index]
+
+    _template = _template.replace(
+        "((" + key + "))", 
+        injections.get(key, "N/A")
+    )
+_template
+# %%
