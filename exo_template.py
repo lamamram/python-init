@@ -22,11 +22,16 @@ injections = {
 }
 
 # %%
+# conception générale d'une boucle while
+# 1. tester les premières itérations à la main
+# 2. analyser les résultats pour en déduire
+# l'évolution des variables => la condition de bouclage
 while "((" in _template:
     start_index = _template.index("((") + len("((")
     end_index = _template.index("))")
     key = _template[start_index:end_index]
 
+    # penser à mettre jour la variable avec la transformation
     _template = _template.replace(
         "((" + key + "))", 
         injections.get(key, "N/A")
