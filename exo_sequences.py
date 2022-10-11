@@ -10,4 +10,14 @@ if chaine == chaine[::-1]:
 # retour à l'indentation précédente: sortie du bloc
 else:
     print(chaine, " n'est pas un palindrome !!")
+
 # %%
+# écrire le code permettant d'obtenir le dessin suivant
+# hint: se donner deux variables
+# h pour hauteur et motif pour ^
+# hint: utiliser la fonction range(h) pour itéter sur
+# les entiers de 0 à h non compris
+
+#   ^
+#  ^^^
+# ^^^^^

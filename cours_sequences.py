@@ -97,3 +97,25 @@ chaine = "A bon chat bon rat"
 chaine = chaine.capitalize()
 chaine
 # %%
+# fonctions internes sur les listes
+
+lst = ["c", "d", "e"]
+## fonctions qui modifient la variable
+## et ne retourne rien => None
+# ajout par la droite : append
+print(lst.append("f"))
+lst
+# ajout par la gauche
+lst.insert(0, "b")
+lst
+## fonctions qui modifient et retourne 
+print(lst.pop())
+print(lst.pop(0))
+lst
+# %%
+# choix d'une transformation interne ou externe
+lst.sort(reverse=True)
+lst
+print(sorted(lst))
+lst
+# %%
