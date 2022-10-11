@@ -42,6 +42,8 @@ _template
 # 1. choisir un nom
 # 2. choisir les paramètres pertinents avec leur ordre d'importance
 # obligatoires (sans valeur par défaut), optionnels (valeurs + souvent utilisée)
+# une fois les paramètres décidés, 
+# refactoriser les valeurs en dur d'après les paramètres
 # 3. gérer la valeur de retour
 def parse_template(tpl: str, contents: dict, slots=("{{", "}}"), default="N/A"):
     while slots[0] in tpl:
