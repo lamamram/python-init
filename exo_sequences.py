@@ -42,11 +42,16 @@ for i in range(1, h + 1):
 values = input("Veuillez entrez des nombres séparés par ,: ")
 values = values.split(",")
 numbers = []
+stop = False
 for value in values:
-    if value.isnumeric():
+    #    n >= 0         ou   n < 0 
+    if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()):
         numbers.append(int(value))
+    else:
+        print(value, "is not a number")
+        stop = True
 
-if len(numbers) != 0:
+if not stop and len(numbers) != 0:
     moy = sum(numbers)/len(numbers)
     print("moyenne de ", numbers, ":", round(moy, 2))
 # %%
