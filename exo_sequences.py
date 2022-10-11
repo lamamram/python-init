@@ -38,3 +38,15 @@ for i in range(1, h + 1):
 # 3. les valeurs numériques sont placées dans une nouvelle liste
 # 4. calcul de la moyenne à partir de la nouvelle liste, 
 # uniquement s'il n'y a pas eu erreur de saisie
+
+values = input("Veuillez entrez des nombres séparés par ,: ")
+values = values.split(",")
+numbers = []
+for value in values:
+    if value.isnumeric():
+        numbers.append(int(value))
+
+if len(numbers) != 0:
+    moy = sum(numbers)/len(numbers)
+    print("moyenne de ", numbers, ":", round(moy, 2))
+# %%
