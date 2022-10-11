@@ -29,3 +29,12 @@ for i in range(1, h + 1):
     print((h - i) * " " + (2 * i - 1) * motif)
 # %%
 # %%
+# reprendre le calcul de moyenne
+# 1. possibilité de saisir d'un coup une série de nombres
+# ex. de saisie: 1,2.6,truc,...
+# 2. analyser chaque valeur de la saisie pour déterminer s'il s'agît
+# d'un nombre (commencer par entier, puis entier relatif, puis réel)
+# HINT: regarder la fonction str.isnumeric()
+# 3. les valeurs numériques sont placées dans une nouvelle liste
+# 4. calcul de la moyenne à partir de la nouvelle liste, 
+# uniquement s'il n'y a pas eu erreur de saisie
