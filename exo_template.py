@@ -43,5 +43,15 @@ _template
 # 2. choisir les paramètres pertinents avec leur ordre d'importance
 # obligatoires (sans valeur par défaut), optionnels (valeurs + souvent utilisée)
 # 3. gérer la valeur de retour
+def parse_template(tpl: str, contents: dict, slots=("{{", "}}"), default="N/A"):
+    while slots[0] in tpl:
+        start_index = tpl.index(slots[0]) + len(slots[0])
+        end_index = tpl.index(slots[1])
+        key = tpl[start_index:end_index]
 
- 
+        # penser à mettre jour la variable avec la transformation
+        tpl = tpl.replace(
+            slots[0] + key + slots[1], 
+            contents.get(key, default)
+        )
+    return tpl
