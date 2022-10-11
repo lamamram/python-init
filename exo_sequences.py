@@ -40,10 +40,9 @@ for i in range(1, h + 1):
 # uniquement s'il n'y a pas eu erreur de saisie
 
 values = input("Veuillez entrez des nombres séparés par ,: ")
-values = values.split(",")
 numbers = []
 stop = False
-for value in values:
+for value in values.split(","):
     #    n >= 0         ou   n < 0 
     if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()):
         numbers.append(int(value))
