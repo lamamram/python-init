@@ -54,3 +54,6 @@ cuisson_oeuf_coque = timedelta(minutes=3)
 atable = datetime.now() + cuisson_oeuf_coque
 atable
 # %%
+
+# comparaisons entre dates
+new_year > datetime.now()
