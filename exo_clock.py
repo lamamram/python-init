@@ -16,5 +16,5 @@
 # 4. gérer la boucle
 
 from utils.misc import remaining_time
-remaining_time(fin_tup=(17, 0), pause_tup=(15, 45), tick=10)
+remaining_time(fin_tup=(17, 0), pause_tup=(15, 30), tick=60)
 # %%
