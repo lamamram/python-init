@@ -18,6 +18,19 @@ misc.strip_lil_words(txt, 3)
 # dir(misc)
 # nom du module quand celui ci est importé
 # misc.__name__
-# %%
 
+# %%
+# import sans espace de nom
+# attention aux conflits de noms
+# utiliser l'alias as pour renommer 
+# une variable importée de même nom qu'une variable
+# définie après
+from misc import PI as PI2, get_occurences # *
+
+PI = 3.14159
+
+txt = "à bon chat bon rat"
+get_occurences(txt)
+PI, PI2
+# print(misc)
 # %%
