@@ -61,4 +61,16 @@ acc.deposit(200)
 acc.withdraw(100)
 acc.get_balance()
 # acc.__set_balance(200)
+# implémentation incomplète
+# acc._Account__balance
+
+# %%
+# en python, tout est objet !!!
+class Truc:
+    pass
+
+t = Truc()
+dico = dict(k="v")
+print(type(t), type(dico))
+isinstance(t, Truc), isinstance(dico, dict)
 # %%
