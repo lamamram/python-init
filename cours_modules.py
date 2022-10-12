@@ -34,3 +34,16 @@ get_occurences(txt)
 PI, PI2
 # print(misc)
 # %%
+# import utils.misc
+# import utils.misc as misc
+from utils.misc import PI
+
+# utils.misc.PI
+# misc.PI
+PI
+# %%
+
+from utils.misc import strip_lil_words
+
+strip_lil_words("à bon chat bon rat")
+# %%
