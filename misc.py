@@ -51,4 +51,18 @@ def get_occurences(text: str):
         else: occ[w] += 1
     return occ
 
-get_occurences("à bon chat bon rat")
+
+
+# def sort_occurences(dico: dict):
+#     output = {}
+#     max_occ = 0
+#     for word, occ in dico.items():
+#         ...
+
+dico = get_occurences("à bon chat bon rat")
+dict(sorted(
+    dico.items(), 
+    key= lambda tup: tup[1], 
+    reverse=True
+))
+# %%
