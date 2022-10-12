@@ -9,6 +9,7 @@
 # à la fin, casser la boucle infinie
 # pour tester, préférer la commande python dans le terminal
 
+# hint: se donner le datetime auj à 17:00 et auj à 15:45
 # 1. calculer le temps restant tout seul
 # 2. gérer le message si pause
 # 3. gérer l'interruption du programme
