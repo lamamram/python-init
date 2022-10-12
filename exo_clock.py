@@ -34,11 +34,13 @@ pause_h, pause_m = 14, 30
 fin = today_at(fin_h, fin_m)
 pause = today_at(pause_h, pause_m)
 fin_pause = pause + timedelta(minutes=15)
-
+fin > pause
+# %%
 while True:
     now = datetime.now()
-        # now - début n'est pas négatif & fin - now idem
-    if (now - pause).days > -1 and (fin_pause - now).days > -1:
+    # now - début n'est pas négatif & fin - now idem
+    # if (now - pause).days > -1 and (fin_pause - now).days > -1:
+    if pause <= now < fin_pause:
         print("c'est la pause !")
     else:
         remains = fin - datetime.now()
@@ -51,5 +53,4 @@ while True:
         remain_sec = remains.seconds % 60
         print(f"il reste {remain_hour}h, {remain_min}mn et {remain_sec}s avant {fin_h}:{fin_m:02d}")
     sleep(10)
-# %%
 # %%
