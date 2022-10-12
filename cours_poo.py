@@ -22,9 +22,10 @@ acc.balance
 # quand on appelle une méthode, on ne tient pas compte
 # du premier paramètre self de la def, car acc est self
 acc.deposit(200)
-acc.balance
+print(acc.balance)
 
 dir(Account)
+Account.balance
 # %%
 class Account:
     # préfixer un attribut (ou une méthode) par "__"
@@ -73,4 +74,31 @@ t = Truc()
 dico = dict(k="v")
 print(type(t), type(dico))
 isinstance(t, Truc), isinstance(dico, dict)
+
+# %%
+# comportements codés sur les objets custom
+class Account:
+    # initialiseur != constructeur
+    def __init__(self, balance=100.) -> None:
+        # attributs d'objet
+        self.balance = balance
+    
+    def __str__(self) -> str:
+        return f"solde: {self.balance}"
+    
+    def __add__(self, account):
+        return self.balance + account.balance
+    
+    def __lt__(self, account):
+        return self.balance < account.balance
+
+# __init__ permet l'instanciation avec des paramètres
+acc = Account(balance=200)
+acc.balance
+# __str__ permet d'afficher ou de convertir l'objet en chaine
+print(acc)
+str(acc)
+acc2 = Account(300)
+acc + acc2
+acc < acc2
 # %%
