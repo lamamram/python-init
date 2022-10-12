@@ -14,3 +14,34 @@
 # 2. gérer le message si pause
 # 3. gérer l'interruption du programme
 # 4. gérer la boucle
+
+from datetime import datetime, timedelta
+
+
+def today_at(h, m):
+    today = datetime.now()
+    return datetime(
+        today.year, 
+        today.month, 
+        today.day,
+        h,
+        m
+    )
+fin_h, fin_m = 17, 0
+pause_h, pause_m = 14, 15
+
+fin = today_at(fin_h, fin_m)
+pause = today_at(pause_h, pause_m)
+fin_pause = pause + timedelta(minutes=15)
+now = datetime.now()
+    # now - début n'est pas négatif & fin - now idem
+if (now - pause).days > -1 and (fin_pause - now).days > -1:
+    print("c'est la pause !")
+else:
+    remains = fin - datetime.now()
+    remain_hour = remains.seconds // 3600
+    remain_min = (remains.seconds % 3600) // 60
+    remain_sec = remains.seconds % 60
+    print(f"il reste {remain_hour}h, {remain_min}mn et {remain_sec}s avant {fin_h}:{fin_m:02d}")
+# %%
+# %%
