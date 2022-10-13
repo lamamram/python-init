@@ -73,8 +73,10 @@ class Truc:
 t = Truc()
 dico = dict(k="v")
 print(type(t), type(dico))
-isinstance(t, Truc), isinstance(dico, dict)
+print(isinstance(t, Truc), isinstance(dico, dict))
 
+chaine = str("bonjour")
+chaine.upper()
 # %%
 # comportements codés sur les objets custom
 class Account:
@@ -101,4 +103,23 @@ str(acc)
 acc2 = Account(300)
 acc + acc2
 acc < acc2
+
+# %%
+# héritage
+from datetime import datetime
+class Client:
+    def __init__(self, f: str, n: str, dj: str) -> None:
+        self.firstname = f
+        self.lastname = n
+        self.date_joint = datetime.strptime(dj, "%Y-%m-%d")
+    
+    def get_full_name(self):
+        return f"{self.firstname.capitalize()} {self.lastname.upper()}"
+    
+    def get_date_joint(self, _format: str):
+        return self.date_joint.strftime(_format)
+
+cl = Client("matt", "lamam", "2022-10-13")
+cl.get_full_name()
+cl.get_date_joint("%d/%m/%Y")
 # %%
