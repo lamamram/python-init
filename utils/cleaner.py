@@ -1,5 +1,5 @@
 # %%
-from utils.misc import strip_little_words
+from utils.misc import strip_lil_words
 from string import punctuation
 import re
 
@@ -23,7 +23,7 @@ class Cleaner:
         self.__text = re.sub(" +", " ", self.__text)
 
     def __clean_little_words(self):
-        self.__text = strip_little_words(self.__text, self.__min_length)
+        self.__text = strip_lil_words(self.__text, self.__min_length)
 
     def clean(self):
         self.__clean_punc()
