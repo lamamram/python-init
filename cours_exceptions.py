@@ -86,15 +86,25 @@ def avg_notes(notes: list):
         if not isinstance(note, (float, int)): 
             raise TypeError(f"{note} pas un nb !")
         if not 0 <= note <= 20: 
-            raise ValueError(f"{note} pas dans [0, 20] !")
+#             raise ValueError(f"{note} pas dans [0, 20] !")
+            raise RangeError(note, 0, 20)
     return round(sum(notes)/len(notes), 1)
+
+class RangeError(Exception):
+    def __init__(self, val, min_v, max_v) -> None:
+        self.val = val
+        self.min_val = min_v
+        self.max_val = max_v
+    
+    def __str__(self) -> str:
+        return f"{self.val} pas dans [{self.min_val}, {self.max_val}] !"
 
 if __name__ == "__main__":
     try:
         avg_notes([0, 15, 20])
         # avg_notes(["bla", "bli", "blo"])
         # avg_notes([])
-        # avg_notes([0, 15, 22])
+        avg_notes([0, 15, 22])
     except Exception as e:
         print(e)
 
