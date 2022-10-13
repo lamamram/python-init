@@ -122,4 +122,34 @@ class Client:
 cl = Client("matt", "lamam", "2022-10-13")
 cl.get_full_name()
 cl.get_date_joint("%d/%m/%Y")
+
+# %%
+from datetime import datetime
+class Person:
+    def __init__(self, f: str, n: str) -> None:
+        self.firstname = f
+        self.lastname = n
+    
+    def get_full_name(self):
+        return f"{self.firstname.capitalize()} {self.lastname.upper()}"
+
+
+class Client(Person):
+    def __init__(self, f: str, n: str, dj: str) -> None:
+        # super appelle une méthode de la classe mère
+        # sur l'objet courant self (client)
+        super().__init__(f, n)
+        self.date_joint = datetime.strptime(dj, "%Y-%m-%d")
+    
+    def get_date_joint(self, _format: str):
+        return self.date_joint.strftime(_format)
+
+
+# comportement surchargé
+cl = Client("matt", "lamam", "2022-10-13")
+# comportement hérité
+cl.get_full_name()
+# comportement spécifique
+cl.get_date_joint("%d/%m/%Y")
+cl.firstname
 # %%
