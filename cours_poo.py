@@ -152,4 +152,43 @@ cl.get_full_name()
 # comportement spécifique
 cl.get_date_joint("%d/%m/%Y")
 cl.firstname
+
+# %%
+# création d'un itérable
+# i.e qqch qui tourne dans une boucle for
+
+class It:
+    def __init__(self, lim=3):
+        self.lim = lim
+
+    def __iter__(self, cpt=0):
+        self.cpt = cpt
+        return self
+    
+    def __next__(self):
+        if self.cpt < self.lim:
+            ret = self.cpt
+            self.cpt += 1
+            return ret
+        else: raise StopIteration
+
+# instanciation d'un itérable
+obj = It()
+# transformation en itérateur: itérable + compteur rechargé
+# iter() appelle __iter__ sur l'itérable et retourne l'iterateur
+it = iter(obj)
+
+# exécution pas à pas
+# next() appelle __next__ sur l'itérateur
+next(it)
+next(it)
+next(it)
+# next(it)
+
+# exécution dans for
+# 1. for régénère l'itérateur
+# 2. appelle next à chaque itération
+# 3. capture l'exception StopIteration
+for i in it:
+    print(i)
 # %%
