@@ -20,3 +20,8 @@
 # utiliser la fonction dans misc.py
 # trier le dictionnaire d'occurence par ordre décroissant
 # affiche les n premiers mots par ordre d'occurence
+
+# méthode:
+# 1. structurer les classes avant d'écrire le contenu des méthodes (sauf __init__)
+# 2. écrire le programme (imports, instanciation et exécution de la méthode publique)
+#    avant le contenu des méthodes
