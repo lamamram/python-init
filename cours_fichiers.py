@@ -82,8 +82,20 @@ os.popen("dir").read()
 # pour exécuter du code entre temps (réel)
 # p = subprocess.Popen(["cmd", "/c", "dir"],
 p = subprocess.Popen(["dir"],
-    shell=True
+    shell=True,
     stdout=subprocess.PIPE,
-    stderr=subprocess.STDOUT)
+    stderr=subprocess.STDOUT
+)
 p.communicate()
+# %%
+import os, shutil
+# manipulation du file system
+# idempotence : même état final qq soit le nb d'exécution
+path = "./temp"
+file_name = "test_fic.txt"
+if not os.path.exists(path):
+    os.mkdir(path)
+if not os.path.exists(f"{path}/{file_name}"):
+    shutil.copy(f"./{file_name}", f"{path}/{file_name}")
+
 # %%
