@@ -61,3 +61,29 @@ with open("./test_fic.txt", "r+", encoding="utf8") as f:
         print(row, end="")
 
 # %%
+# os: fonctions de manipulation de chemins
+import os, platform, subprocess
+
+# diverses infos sur l'archi ou le système
+os.name, os.cpu_count(), os.stat("./test_fic.txt")
+
+# certains modules sont plus spéclialisés qu'os
+platform.uname()
+
+# appel système (déprécié)
+# exécute et renvoie le code retour
+os.system("dir")
+# exécute et renvoie la sortie
+os.popen("dir").read()
+
+# %%
+# moyen moderne: appel bloquant l'exécution
+# possibilité de lancer des appels asynchrones (non bloquants)
+# pour exécuter du code entre temps (réel)
+# p = subprocess.Popen(["cmd", "/c", "dir"],
+p = subprocess.Popen(["dir"],
+    shell=True
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT)
+p.communicate()
+# %%
