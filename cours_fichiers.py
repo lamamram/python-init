@@ -139,3 +139,27 @@ with open("test.csv", "r", encoding="utf8") as csv_f:
 
 
 # %%
+import json
+
+# le map applique une fonction à tous les élements
+# d'un (ou plusieurs itérables) et retourne
+# un itérable contenant les valeurs retournées par la fonction
+users_dict = list(map(
+    lambda row: dict(zip(header, row)), 
+    users
+))
+
+
+with open("test.json", "w", encoding="utf8") as json_f:
+    # écriture compacte
+    # json.dump(users_dict, json_f, separators=(",", ":"))
+    # écriture dépliée
+    json.dump(users_dict, json_f, indent=2)
+    # stringification de l'objet (str)
+    # json_f.write(json.dumps(users_dict))
+
+with open("test.json", "r", encoding="utf8") as json_f:
+    obj = json.load(json_f)
+    # obj = json.loads(json_f.read())
+    print(type(obj))
+# %%

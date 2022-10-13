@@ -1,0 +1,14 @@
+[
+  {
+    "first": "bob",
+    "name": "smith",
+    "age": 38,
+    "hobbies": "read;cook"
+  },
+  {
+    "first": "jane",
+    "name": "Doe",
+    "age": 24,
+    "hobbies": "sport;farniente"
+  }
+]
