@@ -99,3 +99,43 @@ if not os.path.exists(f"{path}/{file_name}"):
     shutil.copy(f"./{file_name}", f"{path}/{file_name}")
 
 # %%
+# créer un fichier csv
+import csv
+
+users = [
+    ["bob", "smith", 38, "read;cook"],
+    ["jane", "Doe", 24, "sport;farniente"]
+]
+
+header = ["first", "name", "age", "hobbies"]
+# différence de gestion du caractère de fin sous unix et windows
+# newline="" permet d'écrire de la même façon sous les deux système
+# et d'éviter les lignes vides sous windows
+with open("test.csv", "w", encoding="utf8", newline="") as csv_f:
+    wr = csv.writer(
+        csv_f, 
+        delimiter=";", 
+        quotechar="/",
+        # stratégie d'échappement
+        # none: pas d'échappement (unsafe, rapide, léger)
+        # minimal : uniquement quand le délimiteur est détecté (lent, léger, safe)
+        # all: tout le temps (safe, rapide, lourd)
+        quoting=csv.QUOTE_MINIMAL,
+    )
+    wr.writerow(header)
+    wr.writerows(users)
+
+with open("test.csv", "r", encoding="utf8") as csv_f:
+    rd = csv.reader(
+        csv_f,
+        delimiter=";",
+        quotechar="/"
+    )
+    # print(list(rd))
+    header = next(rd)
+    for row in rd:
+        print(row)
+        print(dict(zip(header, row)))
+
+
+# %%
