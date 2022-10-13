@@ -42,4 +42,32 @@ except (KeyError, TypeError) as ke:
 except Exception as e:
     print(f"exception capturée: {e, e.args[0], type(e)}")
 
+# modus operandi
+# 1. placer try/excpet avec Exception => capture tout
+# 2. tamiser avec les traitements spécifiques certaines exceptions
+# %%
+# else et finally
+import sys
+
+try:
+    # denom, dico, un, deux = 1, {"k": "v"}, "un", "deux"
+    denom, dico, un, deux = 1, {}, "un", "deux"
+    3/denom
+    dico["k"]
+    chaine = un + " tiens vaut mieux que " + deux
+    print("coucou")
+    sys.exit(0)
+except Exception as e:
+    print(f"exception capturée: {e, e.args[0], type(e)}")
+    sys.exit(0)
+# else s'exécute si le bloc try s'exécute jusqu'au bout
+# s'il n'ya pas d'exceptions levées
+else:
+    print(3/denom, dico["k"], chaine)
+# s'exécute même en cas d'exception 
+# ou de sortie du programme 
+finally:
+    print("whatever it takes")
+
+print("suite du programme")
 # %%
