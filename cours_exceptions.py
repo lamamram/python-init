@@ -71,3 +71,31 @@ finally:
 
 print("suite du programme")
 # %%
+# lancer des exceptions
+
+def avg_notes(notes: list):
+    ## gestion naive
+    # if not notes: return "vide !"
+    # for note in notes:
+    #     if not isinstance(note, (float, int)): return f"{note} pas un nb !"
+    #     if not 0 <= note <= 20: return f"{note} pas dans [0, 20] !" 
+    
+    ## exception
+    if not notes: raise ZeroDivisionError("liste vide !")
+    for note in notes:
+        if not isinstance(note, (float, int)): 
+            raise TypeError(f"{note} pas un nb !")
+        if not 0 <= note <= 20: 
+            raise ValueError(f"{note} pas dans [0, 20] !")
+    return round(sum(notes)/len(notes), 1)
+
+if __name__ == "__main__":
+    try:
+        avg_notes([0, 15, 20])
+        # avg_notes(["bla", "bli", "blo"])
+        # avg_notes([])
+        # avg_notes([0, 15, 22])
+    except Exception as e:
+        print(e)
+
+# %%
