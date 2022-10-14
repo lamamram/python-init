@@ -70,6 +70,7 @@ with sqlite3.connect("dns.db") as conn:
     except sqlite3.OperationalError as e:
         print(e)
 # %%
+import csv
 class SqliteClient:
     def __init__(self, db_path, hydration="dict") -> None:
         self.__db_path = db_path
@@ -88,16 +89,28 @@ class SqliteClient:
         cur = self.__conn.cursor()
         with open(file_path, "r", encoding=encoding) as sql_f:
             cur.executescript(sql_f.read())
+
+    def execute_write(self, query):
+        cur = self.__conn.cursor()
+        cur.execute(query)
+        return cur.rowcount
     
     # paramètres: table, champs, valeurs
     # mode d'insertion (1 * n ou n * m)
-    def insert(self):
-        pass
+    def insert_all(self, table, fields, values):
+        values_str = "'), ('".join(list(map(lambda row: "', '".join(row), values)))
+        req = f"insert into {table} ({', '.join(fields)}) values ('{values_str}')"
+        return self.execute_write(req)
 
+with open("dns_100000.csv", "r", encoding="utf8") as csv_f:
+    rd = csv.reader(csv_f, delimiter=";")
+    header = next(rd)
+    values = list(map(lambda row: row[:2], rd))
 
 try:
     with SqliteClient("dns.db") as db:
         db.executescript("domain_names_sqlite3.sql")
+        print(db.insert_all("domain_name", ("name", "iso2"), values))
 except sqlite3.OperationalError as e:
     print(e)
         
