@@ -105,7 +105,7 @@ if not os.path.exists("pandas_dns.zip"):
     )
 dns_df = pd.read_csv("pandas_dns.zip")
 gb = dns_df.groupby("Pays BE")
-# nombre de noms deomaines par pays
+# Ex: nombre de noms deomaines par pays
 count_df = gb["Nom de domaine"].count()
 count_df.dropna()
 
