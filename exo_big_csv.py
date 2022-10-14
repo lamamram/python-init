@@ -78,3 +78,37 @@ with open(f"./{csv_name}", "r", encoding="iso-8859-1") as csv_f:
         handle_slice(f"dns_{i}.csv", rows, header)
     else:
         handle_slice(f"dns_{i}.csv", rows, header)
+
+# %%
+# introduciton à pandas
+import pandas as pd
+url = "http://www.afnic.fr/wp-media/ftp/documentsOpenData/202105_OPENDATA_A-NomsDeDomaineEnPointFr.zip"
+
+if not os.path.exists("pandas_dns.zip"):
+    dns_df = pd.read_csv(
+        url,
+        sep=";",
+        encoding="iso-8859-1",
+        usecols=["Nom de domaine", "Pays BE"],
+        nrows=1000000,
+        # na_values=["--", "N/A"], 
+        # na
+    )
+    dns_df.to_csv(
+        "pandas_dns.zip",
+        encoding="utf8",
+        compression={
+            "method": "zip",
+            "archive_name": "pandas_dns.csv"
+        },
+        index=False
+    )
+dns_df = pd.read_csv("pandas_dns.zip")
+gb = dns_df.groupby("Pays BE")
+# nombre de noms deomaines par pays
+count_df = gb["Nom de domaine"].count()
+count_df.dropna()
+
+
+
+# %%
