@@ -55,3 +55,73 @@ except (requests.ConnectionError, HTTPError, ValueError) as e:
     print(e, type(e))
 
 # %%
+URL = "https://gorest.co.in/public"
+class GoRestApi:
+    def __init__(self, version="v2") -> None:
+        self.__version = version
+        self.__token = "f272e67cd0429faafae6fba2a892b9464b60fe6fe03621db530f667a62f86cd2"
+
+    
+    def __call(self, endpoint, method, data={}, headers={}):
+        url = f"{URL}/{self.__version}/{endpoint}"
+        ret = {"valid": True, "response": None}
+        if method.upper() in ("POST", "PUT", "DELETE"):
+            headers["authorization"] = f"Bearer {self.__token}"
+        try:
+            call_fn = getattr(requests, method.lower())
+            r = call_fn(url, data=data, headers=headers)
+            # code de retour
+            if 200 <= r.status_code < 300:
+                # analyse du type de corps de réponse
+                if "json" in r.headers["content-type"]:
+                    ret["response"] = r.json()
+                elif "text" in r.headers["content-type"]:
+                    print(r.text.decode("utf8"))
+                else:
+                    print(r.content)
+            else: raise ValueError(f"code {r.status_code}: {r.text}") 
+        except (requests.ConnectionError, HTTPError, ValueError) as e:
+            ret["valid"] = False
+            ret["response"] = e
+        return ret
+    
+    def get_users(self, page):
+        return self.__call(f"users?page={page}", "GET")
+    
+    def get_all_users(self, page_start, page_end):
+        ret = {"valid": True, "response": []}
+        for i in range(page_start, page_end + 1):
+            response = self.get_users(i)
+            print(f"page {i} fetched")
+            if response["valid"]: 
+                ret["response"] += response["response"]
+            else:
+                ret["valid"] = False
+                break
+        return ret
+    
+    def create_user(self, user):
+        return self.__call("users", "POST", data=user)
+    
+if __name__ == "__main__":
+    api = GoRestApi()
+    # print(api.get_users(2))
+    # print(api.get_all_users(1, 10))
+    print(api.create_user({
+        "name": "matt LAMAM",
+        "email": "nawak@example.com",
+        "gender": "male",
+        "status": "active"
+    }))
+
+# %%
+class Truc:
+    param = 1
+
+t = Truc()
+t.param
+getattr(t, "param")
+setattr(t, "machin", 2)
+t.machin
+# hasattr, delattr
+# %%
