@@ -22,3 +22,17 @@ with sqlite3.connect("dns.db") as conn:
 # select count(1) from pays
 
 # 3. protéger les requête par une exception
+
+with sqlite3.connect("dns.db") as conn:
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    try:
+        with open("domain_names_sqlite3.sql", "r", encoding="utf8") as sql_f:
+            cur.executescript(sql_f.read())
+        cur.execute("select count(1) as nb from pays")
+        row = cur.fetchone()
+        print(row["nb"])
+    except sqlite3.OperationalError as e:
+        print(e)
+    # print(cur.lastrowid)
+# %%
