@@ -70,3 +70,28 @@ with sqlite3.connect("dns.db") as conn:
     except sqlite3.OperationalError as e:
         print(e)
 # %%
+class SqliteClient:
+    def __init__(self, db_path, hydration="dict") -> None:
+        self.__db_path = db_path
+        self.__hydration = hydration
+    
+    def __enter__(self):
+        self.__conn = sqlite3.connect(self.__db_path)
+        if self.__hydration == "dict":
+            self.__conn.row_factory = sqlite3.Row
+        return self
+    
+    def __exit__(self, x_typ, x_msg, x_trace):
+        self.__conn.close()
+    
+    def executescript(self, file_path, encoding="utf8"):
+        cur = self.__conn.cursor()
+        with open(file_path, "r", encoding=encoding) as sql_f:
+            cur.executescript(sql_f.read())
+
+
+
+with SqliteClient("dns.db") as db:
+    pass
+        
+# %%
