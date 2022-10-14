@@ -88,6 +88,11 @@ class SqliteClient:
         cur = self.__conn.cursor()
         with open(file_path, "r", encoding=encoding) as sql_f:
             cur.executescript(sql_f.read())
+    
+    # paramètres: table, champs, valeurs
+    # mode d'insertion (1 * n ou n * m)
+    def insert(self):
+        pass
 
 
 try:
