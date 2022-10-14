@@ -38,6 +38,23 @@ with sqlite3.connect("dns.db") as conn:
 # %%
 # 1. insérer 100000 lignes depuis dns_100000.csv dans la base
 # en 1 seule fois: 
-# insert into table domain_name (name, iso2) 
+# insert into domain_name (name, iso2) 
 # values ('aaa.fr', 'FR'), ('bbb.de', 'DE'), ... x 100000
 # 2. afficher cur.rowcount après pour vérifier
+import csv
+with open("dns_100000.csv", "r", encoding="utf8") as csv_f:
+    rd = csv.reader(csv_f, delimiter=";")
+    header = next(rd)
+    values = "'), ('".join(list(map(lambda row: "', '".join(row[:2]), rd)))
+    # y = f°g°h°i°j(x)
+
+req = f"insert into domain_name (name, iso2) values ('{values}')"
+with sqlite3.connect("dns.db") as conn:
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    try:
+        cur.execute(req)
+        print(cur.rowcount)
+    except sqlite3.OperationalError as e:
+        print(e)
+# %%
