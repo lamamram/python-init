@@ -33,7 +33,6 @@
 # 3/ entêtes de la réponse : métadonnées associées au serveur
 
 # %%
-
 from urllib.error import HTTPError
 import requests
 
@@ -55,11 +54,23 @@ except (requests.ConnectionError, HTTPError, ValueError) as e:
     print(e, type(e))
 
 # %%
+from urllib.error import HTTPError
+import requests
+# pip install python-dotenv
+from dotenv import load_dotenv
+import os
+
+# charge les variables du fichier .env à la racine
+# commen variblaes d'environnement
+load_dotenv()
+
 URL = "https://gorest.co.in/public"
+API_TOKEN = os.environ["API_TOKEN"]
+
 class GoRestApi:
     def __init__(self, version="v2") -> None:
         self.__version = version
-        self.__token = "f272e67cd0429faafae6fba2a892b9464b60fe6fe03621db530f667a62f86cd2"
+        self.__token = API_TOKEN
 
     
     def __call(self, endpoint, method, data={}, headers={}):
@@ -108,8 +119,8 @@ if __name__ == "__main__":
     # print(api.get_users(2))
     # print(api.get_all_users(1, 10))
     print(api.create_user({
-        "name": "matt LAMAM",
-        "email": "nawak@example.com",
+        "name": "matt LAMAM2",
+        "email": "nawak2@example.com",
         "gender": "male",
         "status": "active"
     }))
