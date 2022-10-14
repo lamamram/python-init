@@ -15,3 +15,10 @@ with sqlite3.connect("dns.db") as conn:
     print(row["version"])
 # 5. fermeture de la connexion: conn.close()
 # %%
+# 1. exécuter le script .sql grâce au module sqlite3
+#   et la méthode executescript
+
+# 2. vérifier l'import avec une requête select
+# select count(1) from pays
+
+# 3. protéger les requête par une exception
