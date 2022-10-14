@@ -70,7 +70,7 @@ with sqlite3.connect("dns.db") as conn:
     except sqlite3.OperationalError as e:
         print(e)
 # %%
-import csv
+import csv, sqlite3
 class SqliteClient:
     def __init__(self, db_path, hydration="dict") -> None:
         self.__db_path = db_path
@@ -80,9 +80,15 @@ class SqliteClient:
         self.__conn = sqlite3.connect(self.__db_path)
         if self.__hydration == "dict":
             self.__conn.row_factory = sqlite3.Row
+        # désactiver l'auto-commit par défaut de sqlite3
+        # conserver la gestion de la transaction en sql
+        self.__conn.isolation_level = None
         return self
     
     def __exit__(self, x_typ, x_msg, x_trace):
+        # rollback auto en cas d'exception
+        if x_typ:
+            self.__conn.rollback()
         self.__conn.close()
     
     def executescript(self, file_path, encoding="utf8"):
