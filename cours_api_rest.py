@@ -135,4 +135,5 @@ getattr(t, "param")
 setattr(t, "machin", 2)
 t.machin
 # hasattr, delattr
+
 # %%
