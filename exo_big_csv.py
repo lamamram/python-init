@@ -35,6 +35,27 @@ if not os.path.exists(f"./{csv_name}"):
     if os.path.exists(f"./{file_name}"):
         shutil.move(f"./{file_name}", f"./{csv_name}")
 
+
+def handle_slice(f_name: str, rows: list, header: list=None, sep=";", encoding="utf8"):
+    with open(
+        f_name, "w", 
+        encoding=encoding, newline="") as write_f:
+        wr = csv.writer(
+            write_f, 
+            delimiter=sep
+        )
+        if header: wr.writerow(header)
+        wr.writerows(rows)
+        # vider le conteneur de lignes pour reprendre
+        # uniquement 100000
+        # attention: dans une fonction,
+        # réaffecter un paramètre créé une variable locale
+        # décorrélation avec la référence de la variable
+        # globale passée en paramètre
+        # rows = []
+        # opération en interne (mutable)
+        rows.clear()
+
 # %%
 # 1. trouver le séparateur de colonnes et l'encodage du fichier
 # avec une preview
@@ -54,15 +75,6 @@ with open(f"./{csv_name}", "r", encoding="iso-8859-1") as csv_f:
         # si on dépasse le nb de lignes pour le nb de tranches demandé         
         if i > nb_slices * slice_len: break
         # écriture
-        with open(
-            f"dns_{i}.csv", "w", 
-            encoding="utf8", newline="") as write_f:
-            wr = csv.writer(
-                write_f, 
-                delimiter=";"
-            )
-            wr.writerow(header)
-            wr.writerows(rows)
-            # vider le conteneur de lignes pour reprendre
-            # uniquement 100000
-            rows = []
+        handle_slice(f"dns_{i}.csv", rows, header)
+    else:
+        handle_slice(f"dns_{i}.csv", rows, header)
