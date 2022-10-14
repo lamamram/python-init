@@ -88,6 +88,7 @@ class SqliteClient:
     def __exit__(self, x_typ, x_msg, x_trace):
         # rollback auto en cas d'exception
         if x_typ:
+            print("rollback !!")
             self.__conn.rollback()
         self.__conn.close()
     
@@ -107,6 +108,12 @@ class SqliteClient:
         values_str = "'), ('".join(list(map(lambda row: "', '".join(row), values)))
         req = f"insert into {table} ({', '.join(fields)}) values ('{values_str}')"
         return self.execute_write(req)
+    
+    def insert_batch(self, table, fields, values, batch_size=10000):
+        count = 0
+        for i in range(0, (len(values) // batch_size)):
+            count += self.insert_all(table, fields, values[i*batch_size + 1:(i + 1) * batch_size])
+        return count
 
 with open("dns_100000.csv", "r", encoding="utf8") as csv_f:
     rd = csv.reader(csv_f, delimiter=";")
@@ -116,7 +123,8 @@ with open("dns_100000.csv", "r", encoding="utf8") as csv_f:
 try:
     with SqliteClient("dns.db") as db:
         db.executescript("domain_names_sqlite3.sql")
-        print(db.insert_all("domain_name", ("name", "iso2"), values))
+        print(db.insert_batch("domain_name", ("name", "iso2"), values))
+        db.execute_write("PROUT")
 except sqlite3.OperationalError as e:
     print(e)
         
