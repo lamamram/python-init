@@ -36,3 +36,8 @@ with sqlite3.connect("dns.db") as conn:
         print(e)
     # print(cur.lastrowid)
 # %%
+# 1. insérer 100000 lignes depuis dns_100000.csv dans la base
+# en 1 seule fois: 
+# insert into table domain_name (name, iso2) 
+# values ('aaa.fr', 'FR'), ('bbb.de', 'DE'), ... x 100000
+# 2. afficher cur.rowcount après pour vérifier
