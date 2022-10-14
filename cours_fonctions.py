@@ -161,3 +161,20 @@ print(f"x global hors de la fonction: {x, id(x)}")
 #la valeur modifiée est disponible après la fonction
 
 # %%
+# attention aux mutables dans les passages par paramètres
+def add_to_list(lst: list, elem):
+    # lst.append(elem)
+    lst += [4]
+    # lst = lst + [4]
+    print(f'emplacement mem du paramètres: {id(lst)}')
+
+l = [1, 2, 3]
+print(f'emplacement mem de laglobale: {id(l)}')
+add_to_list(l, 4)
+print(l)
+
+# les paramètres de fonctions sont des références aux variables
+# globales injectées dans la fonction
+# si le paramètre est un mutable, on peut modifier
+# la globale depuis la fonction 
+# %%
