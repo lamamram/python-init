@@ -90,8 +90,10 @@ class SqliteClient:
             cur.executescript(sql_f.read())
 
 
-
-with SqliteClient("dns.db") as db:
-    pass
+try:
+    with SqliteClient("dns.db") as db:
+        db.executescript("domain_names_sqlite3.sql")
+except sqlite3.OperationalError as e:
+    print(e)
         
 # %%
