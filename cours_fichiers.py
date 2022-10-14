@@ -162,4 +162,29 @@ with open("test.json", "r", encoding="utf8") as json_f:
     obj = json.load(json_f)
     # obj = json.loads(json_f.read())
     print(type(obj))
+
+# %%
+# gestionnaire de ctx custom
+from traceback import print_tb
+MODE_CAPTURE = False
+class Ctx:
+    def __enter__(self):
+        print("à l'ouverture du with")
+        # le retour se place dans as
+        return self
+    
+    def __exit__(self, x_typ, x_msg, x_trace):
+        print("à la sortie du bloc with")
+        print(x_typ, x_msg)
+        print_tb(x_trace)
+        # le bloc with fonctionne comme un try
+        # on peut capturer l'exception si on retourne
+        # qqch de vrai
+        # possible source de confusion
+        # return MODE_CAPTURE
+
+with Ctx():
+    print("dans le bloc")
+    3/0
+
 # %%

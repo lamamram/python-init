@@ -22,7 +22,7 @@ with sqlite3.connect("dns.db") as conn:
 # select count(1) from pays
 
 # 3. protéger les requête par une exception
-
+import sqlite3
 with sqlite3.connect("dns.db") as conn:
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
@@ -45,8 +45,20 @@ import csv
 with open("dns_100000.csv", "r", encoding="utf8") as csv_f:
     rd = csv.reader(csv_f, delimiter=";")
     header = next(rd)
-    values = "'), ('".join(list(map(lambda row: "', '".join(row[:2]), rd)))
+    # 1. version pro
+    # values = "'), ('".join(list(map(lambda row: "', '".join(row[:2]), rd)))
     # y = f°g°h°i°j(x)
+    # 2. version classique:
+    values = []
+    for row in rd:
+        # sélection des 2 premiers champs
+        sub_row = [row[0], row[1]]
+        # fabriquer chaque enregistrement de l'insert
+        sub_row = "', '".join(sub_row)
+        values.append(sub_row)
+    # relier les enregistrements de l'insert
+    values = "'), ('".join(values)
+
 
 req = f"insert into domain_name (name, iso2) values ('{values}')"
 with sqlite3.connect("dns.db") as conn:
