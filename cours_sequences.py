@@ -51,3 +51,13 @@ for i in range(10, -1, -1):
     print(i)
 
 # %%
+# opération interne vs retourner une transformation
+lst = [1, 2, 3]
+# lst.append(4)
+lst + [4]
+lst.extend([4, 5])
+# lst.sort(reverse=True)
+# lst
+print(sorted(lst, reverse=True))
+print(lst)
+# %%
