@@ -27,8 +27,10 @@ else:
     print(f"{set(values) - set(list(map(str,nums)))} non convertible !!!")
 # %%
 import sys
+import re
 # 1ère amélioration: break et else
 # 2ème modif: une seule liste => enumerate
+# 3ème modif: regex
 DELIM = ','
 values = input(f"entrer une série d'entiers séparés par {DELIM}: ").split(DELIM)
 # values = values.split(DELIM)
