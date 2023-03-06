@@ -32,6 +32,7 @@ import re
 # 2ème modif: une seule liste => enumerate
 # 3ème modif: regex
 DELIM = ','
+FLOAT_PATTERN = "(-?[0-9])+(?:\.[0-9]*)?"
 values = input(f"entrer une série d'entiers séparés par {DELIM}: ").split(DELIM)
 # values = values.split(DELIM)
 if not values: 
@@ -39,11 +40,8 @@ if not values:
     sys.exit(0)
 
 for i, val in enumerate(values):
-    if (
-        val.isnumeric() 
-        or val.startswith("-") and val[1:].isnumeric()
-    ):
-        values[i] = int(val)
+    if re.match(FLOAT_PATTERN, val):
+        values[i] = float(val)
     else:
         print(f"{val} non convertible !!!")
         break
@@ -52,5 +50,6 @@ for i, val in enumerate(values):
 ## for: itérable complètement consommé
 ## while: sortie par condition fausse
 else:
-    moy = sum(nums) / len(nums)
-    print(f"moyenne de {nums}: {round(moy, 2)}")
+    moy = sum(values) / len(values)
+    print(f"moyenne de {values}: {round(moy, 2)}")
+# %%
