@@ -8,3 +8,21 @@
 # 3. les valeurs numériques sont placées dans une nouvelle liste
 # 4. calcul de la moyenne à partir de la nouvelle liste, 
 # uniquement s'il n'y a pas eu erreur de saisie
+
+DELIM = ','
+values = input(f"entrer une série d'entiers séparés par {DELIM}: ").split(DELIM)
+# values = values.split(DELIM)
+nums = []
+for val in values:
+    if (
+        val.isnumeric() 
+        or val.startswith("-") and val[1:].isnumeric()
+    ):
+        nums.append(int(val))
+
+if len(values) == len(nums) and values:
+    moy = sum(nums) / len(nums)
+    print(f"moyenne de {nums}: {round(moy, 2)}")
+else:
+    print(f"{set(values) - set(list(map(str,nums)))} non convertible !!!")
+# %%
