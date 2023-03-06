@@ -26,3 +26,29 @@ if len(values) == len(nums) and values:
 else:
     print(f"{set(values) - set(list(map(str,nums)))} non convertible !!!")
 # %%
+import sys
+# 1ère amélioration: break et else
+# 2ème modif: une seule liste => enumerate
+DELIM = ','
+values = input(f"entrer une série d'entiers séparés par {DELIM}: ").split(DELIM)
+# values = values.split(DELIM)
+if not values: 
+    print("liste vide")
+    sys.exit(0)
+
+for i, val in enumerate(values):
+    if (
+        val.isnumeric() 
+        or val.startswith("-") and val[1:].isnumeric()
+    ):
+        values[i] = int(val)
+    else:
+        print(f"{val} non convertible !!!")
+        break
+
+# exécution du bloc else ssi la boucle termine normalement
+## for: itérable complètement consommé
+## while: sortie par condition fausse
+else:
+    moy = sum(nums) / len(nums)
+    print(f"moyenne de {nums}: {round(moy, 2)}")

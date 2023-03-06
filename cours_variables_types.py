@@ -106,3 +106,18 @@ print(items[1] is shallow_clone[1])
 items[1] = 8
 print(items[1] is shallow_clone[1])
 # %%
+# tuples implicites
+
+x = 1
+y = 2
+# UNPACKING
+x, y = 1, 2
+
+# x = 10
+# y = x + 3
+x, y = 10, x + y
+x, y
+# %%
+for a, b in [(1, 2), (3, 4)]:
+    print(a, b)
+# %%
