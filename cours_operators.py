@@ -40,3 +40,12 @@ if entry.isnumeric():
 else:
     print(f"{entry} n'est pas un int !!!")
 # %%
+# operateur ternaire
+cond = True
+
+if cond:
+    param = 10
+else:
+    param = 20
+
+param = 10 if cond else 20
