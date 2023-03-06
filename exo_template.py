@@ -29,3 +29,51 @@ while "((" in _template:
     _template = _template.replace(f"(({key}))", injections.get(key, "N/A"))
 _template
 # %%
+# portage en fonction
+# définition
+# paramètres positionnels / obligatoires, puis paramètres nommés / optionnels
+# ajour des annotations: purement informatif
+def parse_template(tpl: str, values: dict, slot: tuple=("{{","}}"), dflt: str="N/A") -> str:
+    """
+    Docstring: fonction de templating
+    @param tpl: str: template à parser
+    ...
+    """
+    print(f"id du param: {id(tpl)}")
+    while slot[0] in tpl:
+        index_start = tpl.index(slot[0]) + len(slot[0])
+        index_end = tpl.index(slot[1])
+        key = tpl[index_start:index_end]
+        tpl = tpl.replace(slot[0] + key + slot[1], values.get(key, dflt))
+
+    # valeur de retour
+    print(f"id du param: {id(tpl)}")
+    return tpl
+
+# appel
+print(f"id du template global: {id(_template)}")
+parse_template(_template, injections, ("((", "))"))
+# valeurs par défaut pour les paramètres nommés
+# parse_template("blabla {{key}} {{not_here}}", {"key": "hello"})
+# appel nommé
+# parse_template(values=injections, tpl=_template)
+# %%
+
+# passage par référence des paramètres
+def add_to_list(lst: list, value):
+    """
+    blabla
+    """
+    print(f"id du param: {id(lst)}")
+    lst.append(value)
+    # l2 = lst.copy()
+    # l2.append(value)
+    # return l2
+
+l = [1, 2, 3]
+print(f"id de la var globale: {id(l)}")
+add_to_list(l, 4)
+l
+print(add_to_list.__doc__)
+print(add_to_list.__annotations__)
+# %%
