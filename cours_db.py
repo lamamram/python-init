@@ -1,0 +1,14 @@
+# %%
+# DBAPI
+import sqlite3
+
+# 1. cnx
+with sqlite3.connect("./dns.db") as conn:
+    # acquisition d'un prompt
+    cur = conn.cursor()
+    # exécution
+    cur.execute("SELECT SQLITE_VERSION() as version")
+    # récupération
+    row = cur.fetchone()
+    print(row)
+# closed
