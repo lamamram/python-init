@@ -53,3 +53,40 @@ else:
     moy = sum(values) / len(values)
     print(f"moyenne de {values}: {round(moy, 2)}")
 # %%
+# encapsulation en fonction
+import re
+# *values: un ou n paramètres positionnels, disponibles
+# dans la foncition dans le tuple values
+# => les params positionnels officiels doivent être à gauche
+# les paramètres nommés à droite
+# **opts: arguments nommés supplémentaires qui sont dispo
+# dans un dictionnaire
+def calcul_moyenne(*values, float_pattern: float=FLOAT_PATTERN, precision: int=2, **opts):
+    values = list(values)
+    if not values: 
+        print("liste vide")
+        sys.exit(0)
+
+    for i, val in enumerate(values):
+        if re.match(float_pattern, val):
+            values[i] = float(val)
+        else:
+            if "debug"in opts and opts["debug"]:
+                print(f"{val} non convertible !!!")
+            break
+    else:
+        moy = sum(values) / len(values)
+        return round(moy, precision)
+
+calcul_moyenne("1.3", "truc", "3.14", precision=3)
+calcul_moyenne(*["1.3", "truc", "3.14"], precision=3, debug=True)
+# %%
+# %%
+# effet des arguments * à l'appel
+def func(p1, p2):
+    return p1, p2
+
+params = ["p1", "p2"]
+func(params[0], params[1])
+func(*params)
+# %%
