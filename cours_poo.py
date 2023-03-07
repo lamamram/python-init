@@ -56,3 +56,28 @@ if __name__ == "__main__":
     acc.withdraw(100)
     print(acc.get_balance())
 # %%
+from typing import Any
+# méthodes magiques
+class Account:
+    
+    def __init__(self, _id, balance=100.) -> None:
+        self.__id = _id
+        self.__balance = balance
+    
+    def __str__(self) -> str:
+        return f"id: {self.__id}, balance: {self.__balance}"
+    
+    def __add__(self, alt: Any):
+        if isinstance(alt, Account):
+        # if issubclass()...
+            return self.__balance + alt._Account__balance
+        elif isinstance(alt, float):
+            return self.__balance + alt
+
+acc = Account(1234)
+acc2 =  Account(1234, 200.)
+print(acc)
+# polymorphisme
+print(acc + acc2)
+print(acc + 50.)
+# %%
