@@ -81,3 +81,62 @@ print(acc)
 print(acc + acc2)
 print(acc + 50.)
 # %%
+# itéranle
+
+class IterExp:
+    # fixer la condition limite
+    def __init__(self, val=2, limit=10) -> None:
+        self.__val = val
+        self.__limit = limit
+
+    # (re)initialiser le compteur
+    # transofmrer un itérable en itérateur
+    def __iter__(self):
+        self.__cpt = 1
+        return self
+    
+    # teste la condition limite
+    # calcule la valeur de sortie
+    # met à jour le compteur
+    # ou interrompt l'itération
+    def __next__(self):
+        if self.__cpt < self.__limit:
+            ret = self.__val ** self.__cpt
+            self.__cpt += 1
+            return ret
+        else:
+            raise StopIteration
+
+# instanciation itérable
+p2 = IterExp()
+# transformation en itérateur
+it = iter(p2)
+# exécution pas à pas
+for _ in range(1, 10):
+    print(next(it))
+
+for p in p2:
+    print(p)
+# %%
+
+# générateur en python => itérable à partir d'une fonction
+# fonciton génératrice
+def iter_exp(val=2, limit=10):
+    for i in range(1, limit):
+        # yield interrompt l'exécution de la fonction
+        # jusqu'au prochain appel à next()
+        yield val ** i
+
+# objet générateur
+# g = iter_exp()
+
+for p in iter_exp():
+    print(p)
+
+list(iter_exp())
+# %%
+from sys import getsizeof
+r = range(1000000)
+l = list(range(1000000))
+getsizeof(r), getsizeof(l)
+# %%
