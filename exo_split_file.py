@@ -17,13 +17,21 @@ hint: les zip s'ouvrent et se ferment
 
 modus operandi: faire ceci en n'ouvrant le csv en lecture qu'une seule fois
 """
-import os
+import os, csv
 from zipfile import ZipFile
 
 ZIP_PATH = "./202105_OPENDATA_A-NomsDeDomaineEnPointFr.zip"
 DNS_PATH = "./dns.csv"
 ENCODING = "iso-8859-1"
 DELIMITER = ";"
+SLICE_LENGTH = 100000
+NB_SLICES = 2
+
+def create_slice(path, header, rows, encoding="utf-8"):
+    with open(path, "w", encoding=encoding, newline="") as csv_f:
+        wr = csv.writer(csv_f, delimiter=DELIMITER)
+        wr.writerow(header)
+        wr.writerows(rows)
 
 if __name__ == "__main__":
     if not os.path.exists(DNS_PATH):
@@ -31,6 +39,17 @@ if __name__ == "__main__":
             zip_f.extractall()
         filename = os.path.basename(ZIP_PATH)
         base, ext = os.path.splitext(filename)
-        os.rename(base + ".csv", "dns.csv")
+        os.rename(base + ".csv", os.path.basename(DNS_PATH))
+    
+    with open(DNS_PATH, "r", encoding=ENCODING) as csv_f:
+        rd = csv.reader(csv_f, delimiter=DELIMITER)
+        header = next(rd)
+        rows = []
+        for i, row in enumerate(rd, start=1):
+            rows.append(row)
+            if i > SLICE_LENGTH * NB_SLICES: break
+            if i % SLICE_LENGTH: continue
+            create_slice(f"dns_{i}.csv", header, rows, ENCODING)
+            rows = []
 
 # %%
