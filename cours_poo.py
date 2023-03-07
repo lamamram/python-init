@@ -120,7 +120,7 @@ for p in p2:
 # %%
 
 # générateur en python => itérable à partir d'une fonction
-# fonciton génératrice
+# fonction génératrice
 def iter_exp(val=2, limit=10):
     for i in range(1, limit):
         # yield interrompt l'exécution de la fonction
@@ -135,6 +135,8 @@ for p in iter_exp():
 
 list(iter_exp())
 # %%
+# les générateurs sont bcp plus légers
+# car ils fournissent les valeurs à l'exécution
 from sys import getsizeof
 r = range(1000000)
 l = list(range(1000000))
