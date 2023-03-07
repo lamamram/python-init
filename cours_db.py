@@ -15,3 +15,12 @@ with sqlite3.connect("./dns.db") as conn:
     print(dict(row))
 # closed
 # %%
+# exécution du script .sql avec la méthode executescript
+with sqlite3.connect("./dns.db") as conn:
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    with open("domain_names_sqlite3.sql", "r", encoding="utf-8") as sql_f:
+        cur.executescript(sql_f.read())
+    cur.execute("SELECT COUNT(1) as nb FROM pays")
+    row = dict(cur.fetchone())
+    print(f"{row['nb']} lignes")
