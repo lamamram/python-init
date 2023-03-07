@@ -2,3 +2,4 @@ v_env/
 *.zip
 *.csv
 *.db
+__pycache__/

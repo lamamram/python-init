@@ -53,59 +53,36 @@ else:
     moy = sum(values) / len(values)
     print(f"moyenne de {values}: {round(moy, 2)}")
 # %%
-# encapsulation en fonction
-import re, sys
-FLOAT_PATTERN = "(-?[0-9])+(?:\.[0-9]*)?"
-# *values: un ou n paramètres positionnels, disponibles
-# dans la foncition dans le tuple values
-# => les params positionnels officiels doivent être à gauche
-# les paramètres nommés à droite
-# **opts: arguments nommés supplémentaires qui sont dispo
-# dans un dictionnaire
-# def is_float(item: str) -> bool:
-#     return re.match(FLOAT_PATTERN, item)
+import sys
+# import avec espace de nom
+# import utils.maths
+# import direct des noms
+# dans les 2 cas la totalité du module est exécuté
+# et compilé dans le dossier __pycache__
+# from utils.maths import calcul_moyenne as moyenne
+# from utils.maths import *
+## avec imports simplifiés dans __init__.py
+from utils import calcul_moyenne as moyenne
 
-def calcul_moyenne(*values, float_pattern: float=FLOAT_PATTERN, precision: int=2, **opts):
-    values = list(values)
-    if not values: 
-        print("liste vide")
-        sys.exit(0)
+calcul_moyenne = 2
 
-    # 1. filtrer sur ce qui est convertible
-    # filtered = list(filter(is_float, values))
-    filtered = list(filter(
-        lambda val: re.match(float_pattern, val), 
-        values
-    ))
-    issues = list(set(values) - set(filtered))
-    if issues:
-        if "debug" in opts and opts["debug"]:
-            print(f"{issues}: non convertibles !!!")
-        # lever une exception
-        raise ValueError(f"{issues}: non convertibles !!!")
-    # 2. appliquer la conversion sur les vecteur de données
-    converted = list(map(float, filtered))
-    moy = sum(converted) / len(converted)
-    return round(moy, precision)
-
-
-# calcul_moyenne("1.3", "truc", "3.14", precision=3)
-try:
-#    calcul_moyenne(*["1.3", "truc", "3.14"], precision=3, debug=True)
-   m = calcul_moyenne(*["1.3", "3.14"], precision=3)
-   3/0
-except (ValueError, TypeError) as e:
-    print(e)
-# except Exception as e:
-#     print("erreur non anticipée")
-# s'exécute en cas de try sans exception levée,
-# sans crash
-else:
-    print(f"résultat: {m}")
-# s'exécute même après exit, 
-# même après un crash
-finally:
-    print("before leaving !!!")
+if __name__ == "__main__":
+    try:
+        #    calcul_moyenne(*["1.3", "truc", "3.14"], precision=3, debug=True)
+        m = moyenne(*["1.3", "3.14"], precision=3)
+        # 3/0
+    except (ValueError, TypeError) as e:
+        print(e)
+    # except Exception as e:
+    #     print("erreur non anticipée")
+    # s'exécute en cas de try sans exception levée,
+    # sans crash
+    else:
+        print(f"résultat: {m}")
+    # s'exécute même après exit, 
+    # même après un crash
+    finally:
+        print("before leaving !!!")
 
 # %%
 # %%
@@ -123,4 +100,8 @@ def connect(*, host, username, passwd, dbname, port=3306, encoding="utf-8"):
     print("connect")
 
 connect(username="root", host="127.0.0.1", passwd="123456", dbname="project")
+# %%
+import utils.maths as module
+
+print(module.__name__)
 # %%
