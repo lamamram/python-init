@@ -59,3 +59,19 @@ if __name__ == "__main__":
             # rows = []
 
 # %%
+import pandas as pd
+url = "http://www.afnic.fr/wp-media/ftp/documentsOpenData/202105_OPENDATA_A-NomsDeDomaineEnPointFr.zip"
+# classe fondamentale : Dataframe
+dns_df = pd.read_csv(
+   url,
+   sep=DELIMITER,
+   encoding=ENCODING,
+   usecols=["Nom de domaine", "Pays BE"],
+   nrows=1000000
+)
+dns_df
+# %%
+gb = dns_df.groupby("Pays BE")
+count_df = gb["Nom de domaine"].count()
+count_df.sort_values(ascending=False)
+# %%
