@@ -22,6 +22,8 @@ from zipfile import ZipFile
 
 ZIP_PATH = "./202105_OPENDATA_A-NomsDeDomaineEnPointFr.zip"
 DNS_PATH = "./dns.csv"
+ENCODING = "iso-8859-1"
+DELIMITER = ";"
 
 if __name__ == "__main__":
     if not os.path.exists(DNS_PATH):
