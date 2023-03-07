@@ -27,11 +27,17 @@ DELIMITER = ";"
 SLICE_LENGTH = 100000
 NB_SLICES = 2
 
-def create_slice(path, header, rows, encoding="utf-8"):
+def create_slice(path, header, rows: list, encoding="utf-8"):
     with open(path, "w", encoding=encoding, newline="") as csv_f:
         wr = csv.writer(csv_f, delimiter=DELIMITER)
         wr.writerow(header)
         wr.writerows(rows)
+        # attention : par réaffeaction,
+        # rows devient une variable LOCALE
+        # rows = []
+        # par action interne on reste sur l'emplacement mémoire
+        # de la globale
+        rows.clear()
 
 if __name__ == "__main__":
     if not os.path.exists(DNS_PATH):
@@ -50,6 +56,6 @@ if __name__ == "__main__":
             if i > SLICE_LENGTH * NB_SLICES: break
             if i % SLICE_LENGTH: continue
             create_slice(f"dns_{i}.csv", header, rows, ENCODING)
-            rows = []
+            # rows = []
 
 # %%
