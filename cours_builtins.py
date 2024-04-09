@@ -52,15 +52,3 @@ PI = 2.34
 PI + 2
 
 # %%
-x = input("tapez un entier: ")
-print(type(x))
-x = int(x)
-# unpacking en python
-x < 5, x == 10, x != 33, x >= 8
-equal_to_10 = x == 10 
-if equal_to_10:
-    print(x + 12)
-    print("x est 10 !!")
-else:
-    print("x n'est pas 10 !!")
-# %%
