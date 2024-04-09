@@ -52,3 +52,47 @@ PI = 2.34
 PI + 2
 
 # %%
+# une liste
+numbers = [1, 2, 3.14, -3.33]
+type(numbers)
+# on peut insérer tout ce que 
+nawak = [0, True, 1.41, "chariot", numbers]
+nawak
+# %%
+# longueur de la liste
+len(nawak)
+# demander == lire == get un élement à l'index i
+nawak[0], nawak[1], nawak[len(nawak) - 1], nawak[-1][0]
+# %%
+# le "slicing"
+# l'indice de début est compris mais l'indice de fin n'est pas compris
+# ou jusqu'à la fin
+nawak[1:3]
+nawak[1:], nawak[:3]
+nawak[-2:], nawak[-3:-2]
+# pas de prèlevement tous les 2
+nawak[::2], nawak[::-1]
+
+
+
+# %%
+numbers = [1, 2, 3.14, -3.33]
+# modifier , écrire, set
+numbers[0] = -1
+# Wrong !!
+# numbers[5] = 8.8
+numbers.append(8.8)
+# numbers.remove(8.8)
+# dépiler et retourne à droite ou à gauche
+print(numbers.pop())
+# print(numbers.pop(0))
+numbers
+
+# %%
+# numbers = numbers + [1, 4, 5.5]
+# opérateur accumulatifs
+numbers += [1, 4, 5.5]
+
+# numbers.extend([1, 4, 5.5])
+numbers
+# %%
