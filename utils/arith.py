@@ -2,7 +2,10 @@
 # donc on utilise ici un "chemin absolu"
 from utils.helpers.display import pretty_print
 # from helpers.display import pretty_print
-def ctrl_mean(values: str, delim: str=",", nb_sign: int=2, **kw):
+
+SIGN_NUMBERS = 2
+
+def ctrl_mean(values: str, delim: str=",", nb_sign: int=SIGN_NUMBERS, **kw):
     """
     calcule une moyenne à partir d'une ligne csv
     si possible
