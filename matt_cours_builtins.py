@@ -96,3 +96,23 @@ numbers += [1, 4, 5.5]
 # numbers.extend([1, 4, 5.5])
 numbers
 # %%
+# opérateur is
+x = 10
+# passage par référence
+y = x
+# optimisation
+y = 10
+x == y, x is y
+# fonction id
+id(x), id(y), id(x) == id(y)
+# %%
+l1 = [1, 2, 3]
+l2 = l1
+# copy: copie creuse (indépentante)
+l3 = l1.copy()
+l3 = l1[:]
+print(l1 == l2, l1 is l2, l1 is l3)
+l1.append(4)
+l2, l3
+
+# %%

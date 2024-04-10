@@ -4,6 +4,69 @@
 words = ["un", "chat", "est", "un", "chat"]
 for word in words[::-1]:
     print(word)
+
+
+# %%
+words = ["un", "chat", "est", "un", "chat"]
+upper_sentence = []
+for w in words:
+    upper_sentence.append(w.upper())
+" ".join(upper_sentence)
+
+# %%
+# idem sans nouvelle liste
+words = ["un", "chat", "est", "un", "chat"]
+i = 0
+# for _ in words:
+for w in words:
+    # print(w is words[i])
+    # quand on modifie w il n'est plus (is not) words[i]
+    # donc çà ne marche pas
+    # w = w.upper()
+    words[i] = words[i].upper()
+    # print(w is words[i])
+    i += 1
+" ".join(words)
+
+# %%
+# idem avec les bons outils
+words = ["un", "chat", "est", "un", "chat"]
+# list(enumerate(words, start=1))
+for i, word in enumerate(words):
+     words[i] = word.upper()
+" ".join(words)
+
+# %%
+# liste en intension, ou en comprehension
+words = ["un", "chat", "est", "un", "chat"]
+# " ".join( [ w.upper() for w in words ] )
+" ".join( [ w.upper() for w in words if w != "chat" ] )
+
+# %%
+# break continue else et la range
+# for i in range(10):
+# for i in range(1, 11):
+# for i in range(10, -1, -1):
+#     print(i)
+n = 2
+while n < 100:
+    # nombre pair non premier 
+    if n % 2 == 0 and n > 2:
+        n += 1
+        # on arrête l'itération courante et on commence l'itération suivante
+        continue
+    for i in range(2, n//2 + 1):
+        if n % i == 0:
+            # divisible donc arrête le for
+            break
+    # pas de break donc pas de diviseur donc premier ! 
+    else:
+        print(n)
+    n += 1
+
+
+
+
 # %%
 # opérateur in
 33 in words, "chat" in words, "un" not in words
@@ -59,4 +122,10 @@ while b < 100:
 
 
 # %%
+# if 0:
+#if None:
+# if []:
+# if 3.3333333:
+    print("ok")
 
+# %%
