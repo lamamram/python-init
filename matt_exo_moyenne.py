@@ -52,7 +52,7 @@ else:
 #    vs param. secondaires => valeur par défaut
 # 3. faire le refactoring (valeur en dur vs variables)
 # 4. print vs return
-def ctrl_mean(values: str, delim=",", nb_sign: int=2):
+def ctrl_mean(values: str, delim: str=",", nb_sign: int=2):
     values = values.split(delim)
     numbers = []
     for value in values:
@@ -61,7 +61,6 @@ def ctrl_mean(values: str, delim=",", nb_sign: int=2):
             numbers.append(int(value))
         else:
             return None, f"bad value: {value}"
-            break
     else:
         return round(sum(numbers)/len(numbers), nb_sign), None
 
