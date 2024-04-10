@@ -47,6 +47,11 @@ else:
 
 
 # %%
+# 1. trouver le bon bloc pour être générique (réutilisable)
+# 2. trouver un nom cohérent, et les paramètres primaires (pos. oblig.) 
+#    vs param. secondaires => valeur par défaut
+# 3. faire le refactoring (valeur en dur vs variables)
+# 4. print vs return
 def ctrl_mean(values: str, delim=",", nb_sign: int=2):
     values = values.split(delim)
     numbers = []
