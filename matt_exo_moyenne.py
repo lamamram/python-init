@@ -7,7 +7,7 @@ et ou réelles
 """
 
 # %%
-
+import sys
 """
 1/ se donner n variables de valeurs entiers relatifs
 HINT: saisir une chaine constitués de nombres séparés par ,
@@ -23,9 +23,10 @@ values = input("insérez des valeurs séparées par ,")
 if not values:
     # sortir du programme de manière normale (code 0)
     # comportement normal avec la commande python
-    exit(0)
+    sys.exit(0)
 
 values = values.split(",")
+print(values)
 
 # %%
 numbers = []
@@ -35,12 +36,13 @@ for value in values:
         numbers.append(int(value))
     else:
         # interrompre la boucle
+        print(f"bad value: {value}")
         break
 # le bloc du else ne s'exécute que si on a pas de break
 else:
 # if numbers:
-    print(f"ma moyenne: {round(sum(numbers)/len(numbers), 2)}")
-
+    # print(f"ma moyenne: {round(sum(numbers)/len(numbers), 2)}")
+    print(f"ma moyenne: {sum(numbers)/len(numbers):.2f}")
 
 
 
