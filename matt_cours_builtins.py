@@ -1,15 +1,15 @@
 # %%
 # affectation: mettre 10 dans x
 # j'ai déclaré un nom de variable: x
-# j'ai initialisé cette variable avec la valur 10 en int
+# j'ai initialisé cette variable avec la valeur 10 en int
 x = 10
 y = 42
 # le plus ici est l'opérateur de l'addition des ints
 # notion: d'expression: toute inscription evaluable
 print(x)
 print(42)
-x + 42
-x + y
+print(x + 42)
+print(x + y)
 # %%
 # opération sur les builtins de type str
 first_word = "hello my Jack's"
@@ -17,8 +17,9 @@ second_word = 'world'
 first_word + " " + second_word
 # %%
 # typage fort: pas (bcp) de conversion de type implicite
-# on doit faire des conversion de type explicite
+# on doit faire des conversions de type explicites
 calcul  = 1
+y = 42
 print("j'ai " + str(calcul + y) + " truc")
 # conversion avec les paramètres du print 
 # et concaténation auto avec " " 
@@ -28,7 +29,7 @@ print("j'ai", calcul + y, "truc", sep='"')
 # i.e que le caractère suivant abndonne son rôle en python
 print("j'ai", calcul + y, "truc", sep="\"")
 # f-string: interpolation des expressions python
-# dans une chaine de caractère
+# dans une chaine de caractère + conversion en str
 print(f"j'ai {calcul + y} truc")
 # %%
 # on peut échapper le \n
@@ -48,14 +49,14 @@ template
 PI = 3.14
 PI = 2.34
 # float -> int
-# PI + 1.0
+# PI + 2.0
 PI + 2
 
 # %%
 # une liste
 numbers = [1, 2, 3.14, -3.33]
 type(numbers)
-# on peut insérer tout ce que 
+# on peut insérer tout ce que veut
 nawak = [0, True, 1.41, "chariot", numbers]
 nawak
 # %%
