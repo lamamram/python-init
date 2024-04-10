@@ -11,6 +11,11 @@ print(42)
 print(x + 42)
 print(x + y)
 # %%
+# suppression de variables
+z = 20
+del z
+# z
+# %%
 # opération sur les builtins de type str
 first_word = "hello my Jack's"
 second_word = 'world'
@@ -116,4 +121,55 @@ print(l1 == l2, l1 is l2, l1 is l3)
 l1.append(4)
 l2, l3
 
+# %%
+# dictionnaire = ebsemble de oaires clé/valeur 
+# avec la valeur accessible par la clé 
+# => les clés sont uniques
+dico = {
+    "key": "value",
+    2: 3.14,
+    3.33: [1, 2],
+    (-2.452, 45.345): "Nantes"
+}
+dico["key"]
+dico[2] = "PI"
+dico[3.33].append(3)
+dico["new_key"] = "new_value"
+del dico["new_key"]
+# print(dico.pop("new_key"))
+dico
+# %%
+# valeur par défaut
+dico = {
+    "key": "value",
+    2: 3.14,
+    3.33: [1, 2],
+    (-2.452, 45.345): "Nantes"
+}
+# KeyError
+# print(dico["truc"])
+if "truc" in dico: print(dico["truc"])
+else: print("defaut")
+# %%
+
+dico.get("truc"), dico.get("key", "defaut")
+# %%
+# boucle sur un dico: par défaut sur les clés
+print(list(dico.keys()))
+for k in dico: print(k, dico[k])
+
+print("----------values------------")
+# sur les valeurs
+print(list(dico.values()))
+for v in dico.values(): print(v)
+print("----------key/values------------")
+# sur les clés/valeurs
+print(list(dico.items()))
+for k, v in dico.items(): print(k, v)
+
+# %%
+# fabriquer un dico avec des listes de clés et de valeurs
+keys = [ f"key_{i}" for i in range(1, 5) ]
+values = [ f"value_{i}" for i in range(1, 5) ]
+dict(zip(keys, values))
 # %%
