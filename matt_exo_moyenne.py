@@ -41,11 +41,29 @@ for value in values:
 # le bloc du else ne s'exécute que si on a pas de break
 else:
 # if numbers:
-    # print(f"ma moyenne: {round(sum(numbers)/len(numbers), 2)}")
-    print(f"ma moyenne: {sum(numbers)/len(numbers):.2f}")
+    print(f"ma moyenne: {round(sum(numbers)/len(numbers), 2)}")
+    # print(f"ma moyenne: {sum(numbers)/len(numbers):.2f}")
 
 
 
 # %%
+def ctrl_mean(values: str, delim=",", nb_sign: int=2):
+    values = values.split(delim)
+    numbers = []
+    for value in values:
+        value = value.strip()
+        if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()):
+            numbers.append(int(value))
+        else:
+            return None, f"bad value: {value}"
+            break
+    else:
+        return round(sum(numbers)/len(numbers), nb_sign), None
+
+val, error = ctrl_mean("1;-6;34", delim=";")
+if error is None:
+    print(f"ma moyenne: {val}")
+else:
+    print(error)
 
 # %%
