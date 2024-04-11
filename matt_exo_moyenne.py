@@ -41,7 +41,9 @@ for value in values:
 # le bloc du else ne s'exécute que si on a pas de break
 else:
 # if numbers:
-    print(f"ma moyenne: {round(sum(numbers)/len(numbers), 2)}")
+    moy = sum(numbers)/len(numbers)
+    f"ma moyenne: {moy.__round__(2)}"
+    print(f"ma moyenne: {round(moy, 2)}")
     # print(f"ma moyenne: {sum(numbers)/len(numbers):.2f}")
 
 
