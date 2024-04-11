@@ -1,6 +1,6 @@
 # %%
 # écriture CamelCase
-class BankAccount:
+class Account:
 
     # attributs de classe publics (on peut les retourner et les modifier directement)
     _id = None
@@ -16,9 +16,9 @@ class BankAccount:
         self.balance = balance
 
 # "appeler" la classe
-# instanciation d'un objet acc à partir de la classe BankAccount
+# instanciation d'un objet acc à partir de la classe Account
 # acc est une instance
-acc = BankAccount()
+acc = Account()
 
 # retourner et affecter des attributs
 acc._id, acc.balance
@@ -34,12 +34,12 @@ acc.set_balance(200.)
 # différence entre l'attribut d'objet "acc.balance" ...
 print(acc.get_balance())
 # et l'attribut de classe
-BankAccount.balance
+Account.balance
 
 # %%
 # L'ENCAPSULATION en POO
 
-class BankAccount:
+class Account:
 
     # attributs privés (préfixés par "__" et donc on ne peut plus retourner et modifier directement)
     __id = None
@@ -60,7 +60,7 @@ class BankAccount:
     def set_balance(self, balance: float):
         self.__balance = balance
 
-acc = BankAccount()
+acc = Account()
 # acc.__id
 ## ce __id n'est pas le vrai !!!
 acc.__id = 23
@@ -71,7 +71,11 @@ print(acc.get_id())
 
 # %%
 
-class BankAccount:
+class Account:
+    """
+    classe de compte bancaire
+    blabla
+    """
 
     #------------------------attributs de classe -----------------------------#
 
@@ -98,10 +102,16 @@ class BankAccount:
         return self.__balance
     
     def deposit(self, amount: float):
+        """
+        dépôt positif
+        """
         if amount > 0:
             self.__update_balance(amount)
     
     def withdraw(self, amount: float):
+        """
+        retrait positif
+        """
         if amount > 0 and amount:
             self.__update_balance(-amount)
 
@@ -117,7 +127,7 @@ class BankAccount:
     def __update_overdraft(self):
         self.__overdraft = True if self.__balance < 0 else False
 
-acc = BankAccount(534543534)
+acc = Account(534543534)
 acc.get_balance()
 
 acc.deposit(100)
@@ -131,7 +141,7 @@ str(acc)
 # et str(acc) demande acc.__str__()
 print(acc)
 
-acc2 = BankAccount(233432423, 300)
+acc2 = Account(233432423, 300)
 
 # <=> acc.__add__(acc2)
 acc + acc2
@@ -179,4 +189,15 @@ str.mock_join = mock_join
 " ".mock_join(["a", "b", "c"])
     
 
+# %%
+
+from bank.account import BankAccount
+from bank.client import Client
+
+
+if __name__ == "__main__":
+    cl = Client(132423423, "LAMAMRA", "matt", "13/02/1983")
+    acc = BankAccount(34534544, cl, 500.)
+
+    acc.get_client_name()
 # %%

@@ -48,3 +48,7 @@ if __name__ == "__main__":
     
     print(utils.arith.__name__)
 # %%
+import main_bank
+
+print(main_bank.__name__)
+# %%

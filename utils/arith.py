@@ -1,3 +1,8 @@
+"""
+module de fonctions arithmétiques
+liste:
+- ctrl_mean
+"""
 # les imports sont calculés à partir du programme principal
 # donc on utilise ici un "chemin absolu"
 from utils.helpers.display import pretty_print
