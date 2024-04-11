@@ -53,6 +53,11 @@ class BankAccount:
     # => l'injection de dépendance
     def get_client_name(self):
         return self.__client.get_full_name(mode="nawak")
+    
+    def check_birth_date(self):
+        # SOR : S des principes SOLID: separation des responsabilité
+        if self.__client.reminder_joint_birth_date():
+            self.deposit(10)
 
     #------------------------méthodes privée -----------------------------#
 

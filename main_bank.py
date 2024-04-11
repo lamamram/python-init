@@ -1,10 +1,17 @@
+# %%
 from bank.account import BankAccount
 from bank.client import Client
 
-print("coucou")
+# print("coucou")
 
 if __name__ == "__main__":
-    cl = Client(132423423, "LAMAMRA", "matt", "13/02/1983")
-    acc = BankAccount(34534544, cl, 500.)
+    try:
+        cl = Client(132423423, "LAMAMRA", "matt", "04-11-1983")
+        acc = BankAccount(34534544, cl, 500.)
 
-    print(acc.get_client_name())
+        print(acc.get_client_name())
+        acc.check_birth_date()
+        print(acc.get_balance())
+    except ValueError as e:
+        print(e)
+# %%
