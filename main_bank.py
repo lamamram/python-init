@@ -6,7 +6,7 @@ from bank.client import Client
 
 if __name__ == "__main__":
     try:
-        cl = Client(132423423, "LAMAMRA", "matt", "04-11-1983")
+        cl = Client(132423423, "LAMAMRA", "matt", "1983-04-01")
         acc = BankAccount(34534544, cl, 500.)
 
         print(acc.get_client_name())
