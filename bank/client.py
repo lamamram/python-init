@@ -24,13 +24,11 @@ class Client:
 
         for fmts, dt_fmt in self.__pattern_formats.items():
             if re.match(fmts, joint_date):
-                    f = dt_fmt
+                    self.__joint_date =  datetime.strptime(joint_date, dt_fmt)
                     break
         else:
             # on va faire planter nous même le code
             raise ValueError(f"{joint_date}: bad format")
-
-        self.__joint_date =  datetime.strptime(joint_date, f)
     
 
     def get_full_name(self, **params):
