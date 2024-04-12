@@ -95,12 +95,14 @@ BASE_DIR = "C:/Users/Admin stagiaire.DESKTOP-8967908/Desktop/dawan/formations/py
 print(os.getcwd())
 # cd ..
 os.chdir(BASE_DIR)
-os.chdir("..")
-os.system("git clone https://github.com/lamamram/python-init.git")
+os.chdir("../python-init")
+# os.system("git clone https://github.com/lamamram/python-init.git")
+os.system("git pull origin main")
 # %%
 import os, shutil
 BASE_DIR = "C:/Users/Admin stagiaire.DESKTOP-8967908/Desktop/dawan/formations/python/init/080424"
-target = "matt_cours_fichiers.py"
+# target = "matt_cours_fichiers.py"
+target = "matt_dns_100000.csv"
 # séparer le nom du dossier du bout ou le nom du fichier
 _, my_dir = os.path.split(BASE_DIR)
 
