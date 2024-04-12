@@ -56,3 +56,58 @@ with open("./mon_fic.txt", mode="r", encoding="utf8") as f:
 
 
 # %%
+# supprimer le dossier python-init
+import os, shutil
+
+# chemin absolu
+BASE_DIR = "C:/Users/Admin stagiaire.DESKTOP-8967908/Desktop/dawan/formations/python/init/080424"
+# pwd: print working directory
+print(os.getcwd())
+# cd ..
+os.chdir(BASE_DIR)
+
+os.chdir("..")
+tmp_dir = os.getcwd()
+
+# appel system => je veux utiliser une command linux ou windows
+# en linux rm -rf python-init
+# en windows je veux
+try:
+    code = os.system('powershell.exe Remove-Item -Recurse python-init')
+    print(code)
+except Exception as e:
+    print(e)
+
+## si l'appel system ne fct => windows
+## shutil.rmtree (rm -rf) sauf droits windows trop grands
+try:
+    shutil.rmtree("./python-init")
+except Exception as e:
+    print(e)
+
+# %%
+import os, shutil
+# recloner le dépôt
+# chemin absolu
+BASE_DIR = "C:/Users/Admin stagiaire.DESKTOP-8967908/Desktop/dawan/formations/python/init/080424"
+
+# pwd: print working directory
+print(os.getcwd())
+# cd ..
+os.chdir(BASE_DIR)
+os.chdir("..")
+os.system("git clone https://github.com/lamamram/python-init.git")
+# %%
+import os, shutil
+BASE_DIR = "C:/Users/Admin stagiaire.DESKTOP-8967908/Desktop/dawan/formations/python/init/080424"
+target = "matt_cours_fichiers.py"
+# pwd: print working directory
+_, my_dir = os.path.split(BASE_DIR)
+
+print(os.getcwd())
+# cd ..
+os.chdir(BASE_DIR)
+os.chdir("../python-init")
+
+shutil.copy2(f"./{target}", f"../{my_dir}/{target[5:]}")
+# %%
