@@ -70,3 +70,27 @@ mit = MyIterator()
 for val in mit:
     print(val)
 # %%
+import numpy as np
+import pandas as pd
+
+url = "http://www.afnic.fr/wp-media/ftp/documentsOpenData/202105_OPENDATA_A-NomsDeDomaineEnPointFr.zip"
+encoding = "iso-8859-1"
+
+# DataFrame
+df = pd.read_csv(
+    url,
+    sep=";", 
+    encoding=encoding)
+
+# %%
+# df[["Nom de domaine", "Pays BE", "Departement BE"]]
+
+# filtre à gauche sur une colonne et colonne à droite
+df.loc[ df["Departement BE"] == 75 , ["Nom de domaine", "Pays BE", "Departement BE"]]
+
+
+df["Pays BE"].unique()
+
+gb = df.groupby(by=["Pays BE"])
+gb["Pays BE"].count().sort_values(ascending=False)
+# %%
