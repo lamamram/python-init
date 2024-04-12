@@ -105,3 +105,62 @@ def fct(*args, **kwargs):
 fct(1, 2, 3, 4, k1="v1", k2="v2")
 
 # %%
+import random
+from time import time
+
+def square(x: float):
+    return x ** 2
+# génération d'une liste de 30 float entre 1 à 100
+numbers = [ random.random()*random.randint(1, 100) for _ in range(300) ]
+# numbers = [ square(random.random()*random.randint(1, 100)) for _ in range(30) ]
+print(numbers)
+
+# %%
+# technique programmation impérative
+start = time()
+for i, n in enumerate(numbers):
+    numbers[i] = square(n)
+print(time() - start)
+numbers
+
+
+# technique de programmation fonctionnelle
+# map applique une fonction en paramètres sur tous les éléments
+# d'un itérable en paramètres
+# retourne un itérable des valeurs transformées par la fonction
+# %%
+# map est codée en C donc bcp plus rapide 
+# => que un for
+# => qu'une liste en compréhension []
+start = time()
+
+#Y =  map ° square (X)
+# Y = SQUARE * X
+# REM: la valeur de retour est un "objet map"
+# => qui est un itérable (comme une liste)
+# => qu'on ne peut pas affichier mais qu'on peut exploiter
+squares = map(square, numbers)
+print(time() - start)
+
+# %%
+# print(squares)
+
+# fonction nommées :réutilisable
+def inf_1000(f: float):
+    return f < 1000
+
+print(filter(lambda f: f < 1000, squares))
+
+# %%
+from random import shuffle
+# tri
+values = [f"values_{i}" for i in range(20) ]
+shuffle(values)
+## NB: .sort() => change la liste mais ne retourne pas
+# values.sort()
+# values
+## sorted(l): retourne la valeur triée mais ne change pas le paramètre
+# je veux trier sur l'entier compris dans mes valeurs, situé après l'underscore
+sorted(values, key=lambda v: int(v[v.index("_") + 1:]))
+
+# %%
