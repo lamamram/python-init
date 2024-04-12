@@ -8,9 +8,10 @@ if __name__ == "__main__":
     # le bloc try essaie d'exécuter tout le bloc
     # 1/ pas d'erreur on continue sans exécuter le ou les except
     try:
-        cl = Client(132423423, "LAMAMRA", "matt", "Apr 11th 1983")
+        cl = Client(132423423, "LAMAMRA", "matt", "1983-04-12")
         acc = BankAccount(34534544, cl, 500.)
 
+        
         print(acc.get_client_name())
         acc.check_birth_date()
         print(acc.get_balance())
