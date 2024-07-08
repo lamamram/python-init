@@ -98,3 +98,46 @@ dico["key"]
 
 
 # %%
+# intro: opérateurs
+
+# + - * / //(quotient) %(modulo) **(exposant)
+
+# 1.on prend un entier entre 0 et 86400
+# 2. je veux connaître l'heure
+# 3. présenter le résultat joliment
+
+saisie = input("saisissez un entier entre 0 (minuit auj.) et 86400 (minuit demain) :")
+saisie
+# pas de conversion implicites en python !!! (sauf int et float)
+# on doit utiliser des fonctions de conversion
+saisie = int(saisie)
+
+nb_heures = saisie // 3600
+nb_minutes = saisie % 3600 // 60
+nb_secondes = saisie % 60
+
+# BAD PRACTICE: conversion explicite + gérer les espaces
+# print("il est " + str(nb_heures) + "h, " + str(nb_minutes))
+# MIEUX: conversion implicites + ajout des espaces
+print("il est", nb_heures, "h,", nb_minutes, "mn,", nb_secondes, "s", sep="|")
+
+# %%
+# TEMPLATING
+
+# old-fashion
+tpl = "il est %d h, %d mn, %ds"
+print(tpl % (nb_heures, nb_minutes, nb_secondes))
+
+# python3
+tpl1 = "il est {1}h, {2}mn, {0}s"
+tpl2 = "il est {hour}h, {minute}mn, {second}s"
+# fonction interne de la variable de type str
+# print(tpl1.format(nb_heures, nb_minutes, nb_secondes))
+print(tpl2.format(
+    second=nb_secondes, 
+    minute=nb_minutes, 
+    hour=nb_heures))
+# %%
+# f-string: spécificité python3.6 + SUCRE SYNTAXIQUE
+print(f"il est {nb_heures}h, {nb_minutes}mn, {nb_secondes + 10}s")
+# %%
