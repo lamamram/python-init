@@ -141,3 +141,70 @@ print(tpl2.format(
 # f-string: spécificité python3.6 + SUCRE SYNTAXIQUE
 print(f"il est {nb_heures}h, {nb_minutes}mn, {nb_secondes + 10}s")
 # %%
+# pour connaître les attributs interne d'un objet
+truc = "toto"
+# introspection
+dir(truc)
+
+# une valeur litérale est un objet
+# qu conient des attributs internes
+"bizarre {}".format("python")
+# %%
+# notion: instruction vs expression
+# INSTRUCTION
+# print(x = 1) # ERROR
+
+x = 1
+print(x, 1, x + 1, ("toto" + "tata").upper())
+# on peut considérer les expressions comme des variables et leur donner des attributs
+# %%
+
+# intro au IF
+
+x = 10
+
+# en-tête if <expression => qui retourne un booléen> :
+if x < 5:
+    print(f"{x} plus petit que 5 !")
+# autre condition si les conditions précedéntes sont fausse
+elif x == 8:
+    print("other result !!")
+# si toutes les conditions précédentes sont fausses
+else:
+    print("ni 8 ni plus petit que 5")
+
+# if independant 
+# if <blabla>:
+    # bloc
+
+# %%
+# boucle for
+
+user = ["bob", "smith", 33, 175.7]
+
+# en-tête de la boucle for
+# for a besoin d'un objet itérable (list, tuple, str par défaut)
+# dont on veut manipuler les valeurs successives
+for item in user:
+    print(item)
+
+
+# %%
+# manipulation des listes: SLICING (fonctionne avec str, list, tuple)
+
+user = ["bob", "smith", 33, 175.7]
+
+# index de début COMPRIS / index de fin NON COMPRIS
+user[1:3]
+# depuis le début vers / index de fin NON COMPRIS
+user[:3]
+# à partir d'un indice de début COMPRIS jusqu'à la fin
+user[1:]
+
+# je veux tronquer les 2 éléments de fin (indice négatifs à partir de -1)
+user[:-2]
+# ajouter un saut / pas de sélection
+user[::2]
+# inversion
+user[::-1]
+# %%
