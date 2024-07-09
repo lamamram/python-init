@@ -128,3 +128,24 @@ for v in dico.values(): print(v)
 # unpacking sous jacent depuis les tuples gérés dans l'objet dict_items
 for k, v in dico.items(): print(k, v)
 # %%
+# affectations des listes
+
+lst = [1, 2, 3]
+lst2 = lst # passage par référence
+lst.append(4) # modifie lst ET lst2 car
+print(lst is lst2, lst2) # True, [1,2,3,4]
+lst = [1,2,3]
+lst3 = lst.copy() # ou lst[:] => "copie creuse" i.e indépendante en mémoire
+lst.append(4) # modifie lst MAIS PAS lst3 car
+print(lst is lst3, lst3) # False, [1,2,3] 
+# %%
+
+# idem dico
+
+dico = {"k": "v", "k2": "v2", "k3": "v3"}
+
+dico2, dico3 = dico, dico.copy()
+del dico["k"]
+dico2, dico3
+
+# %%

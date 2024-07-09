@@ -9,6 +9,8 @@ Hint: regarder la fonction str.replace
 par la clé correspondante si celle ci existe ou par N/A
 """
 
+# %%
+
 _template = """
 lorem ipsum (blabla) ... ((key1)) blabla ....
 lorem ipsum (blabla) ... ((key2)) blabla ....
@@ -21,3 +23,8 @@ injections = {
     "key2": "content2",
     "key3": "content3"
 }
+
+# %%
+
+_template
+# %%
