@@ -77,3 +77,23 @@ for i, p in enumerate(prix):
 else:
     print(f"tous les prix sont OK: {prix}")
 # %%
+# valeurs de retours multiples : tuple implicite
+
+def func():
+    return "truc", "machin", "bidule"
+
+ret = func()
+type(ret)
+# %%
+# passage par référence
+def plus_2(param):
+  print(id(param)) # même id que "p"
+  param += 2
+  print(id(param)) # changement de id car modif
+  return param
+
+p = 10
+print(id(p))
+ret = plus_2(p)
+print(id(ret)) # même id que "param" retourné
+# %%
