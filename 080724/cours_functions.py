@@ -126,3 +126,77 @@ my_func(params["p1"], params["p2"], params["p3"])
 my_func(**params)
 
 # %%
+# introspection des fonctions
+
+def my_func():
+  """
+  DOCSTRING !! qu'on met sur la 1ère ligne du bloc
+  ma fonction my_func qui ne fait RIEN !!
+  ...
+  ...
+  """
+  pass
+
+# print(my_func)
+type(my_func)
+id(my_func)
+dir(my_func)
+# help(my_func)
+print(my_func.__doc__)
+
+# %%
+# documentation contextuelle utilisée par l'autocompléteur des EDI
+# help(str.replace)
+"truc".replace()
+my_func()
+# %%
+
+def my_func(nom: str, age: int=33) -> str:
+   age += 2
+   return f"nom: {nom}, age: {age}"
+
+my_func("matt")
+# my_func("matt", "troite trois")
+
+my_func.__annotations__
+my_func()
+# %%
+# notion de fonction lambda
+
+# programmation impérative
+lst = list(range(100))
+
+for i, val in enumerate(lst):
+   lst[i] = val**2
+
+lst
+# %%
+
+# idem en programmation fonctionnelle
+# fonction nommée
+def sq(x):
+   return x**2
+
+lst = list(range(100))
+# map est capable d'appliquer une fonction en paramètre
+# sur tous les éléments d'un itérable
+list(map(sq, lst)) # y = map ° sq(lst)
+
+
+# %%
+# avec une fonction anonyme
+lst = list(range(100))
+# list(map(lambda x:x**2, lst)) # y = map ° sq(lst)
+
+list(filter(lambda x: x > 50, lst))
+
+# %%
+# tri complexe
+from random import shuffle
+lst = [ f"line_{i}" for i in range(20) ]
+shuffle(lst)
+lst
+# %%
+# sorted(lst)
+sorted(lst, key=lambda l: int(l[5:]))
+# %%
