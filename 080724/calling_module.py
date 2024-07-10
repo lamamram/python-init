@@ -1,6 +1,16 @@
 import imported_module
 
-
+## REM: quand python doit importer un nom
+# 1. il cherche le nom dans la librairie standard (modules installés avec python)
+# 2. un module local de même nom (depuis du dossier racine du module appelant)
+# 3. un module pip de même nom
+from requests import truc
+# from math import ctrl_mean
+from math import sqrt
+print(truc)
+# print(ctrl_mean("1,-1"))
+print(sqrt(2))
+# r  = requests.get("https://dawan.fr")
 
 if __name__ == "__main__":
     # espace du nom du module: garantit l'unicité du nom
