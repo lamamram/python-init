@@ -58,8 +58,21 @@ print(acc.get_id()) # getter: méthode publique pour lire un attribut
 print(acc._BankAccount__id)
 print(acc.__id)
 # %%
+from abc import ABC
+
+# classe abstraite
+## utilisation d'une classe abstraite qui donne l'interface standard 
+# à utiliser pour les classes concrètes (métier)
+class BankAccountAbstract(ABC):
+    ## interface de la classe => présentation des méthodes
+    def __init__(self, _id, balance): pass
+    def __str__(self) -> str: pass
+    def __add__(self, alt_acc): pass
+    def get_id(self): pass
+    def get_balance(self): pass
+
 # méthodes magiques
-class BankAccount:
+class BankAccount(BankAccountAbstract):
   # génére et renseigne des attributs d'objet dès l'instanciation
   def __init__(self, _id: int, balance: float=100.):
     self.__id = _id
@@ -67,13 +80,25 @@ class BankAccount:
 
   def get_id(self):
     return self.__id
+  
+  def get_balance(self):
+    return self.__balance
 
   # donne un sens à l'affichage et la conversion en str de l'objet
   def __str__(self) -> str: 
     return f"id: {self.__id} balance: {self.__balance}"
 
+  def __add__(self, alt_acc: BankAccountAbstract):
+    # çà fonctionne AUSSI avec alt_acc.__balance (censé être privé) !!!!
+    return self.__balance + alt_acc.get_balance()
+
 acc = BankAccount(34554) # exécute automatiquement la méthode __init__
+acc2 = BankAccount(3534, 200)
 print(acc.get_id())
 print(acc)
+acc + 
 # print(acc), str(acc) # exécute __str__
 # %%
+
+def my_upper(_str: str):
+  return _str.upper()
