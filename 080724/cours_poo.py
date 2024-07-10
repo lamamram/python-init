@@ -104,6 +104,59 @@ acc + acc2
 acc[2]
 # print(acc), str(acc) # exécute __str__
 # %%
-
+# annotations importantes pour l'autocomplétion des variables locales !!!
 def my_upper(_str: str):
   return _str.upper()
+
+# %%
+#  injection de dépendance
+
+class Client:
+  def __init__(self, firstname: str, name: str):
+    self.__firstname = firstname
+    self.__name = name
+  
+  def get_full_name(self): 
+    return f"{self.__firstname.capitalize()} {self.__name.upper()}"
+class BankAccount:
+  def __init__(self, balance: float, owner: Client):
+    self.__balance = balance
+    self.__owner = owner
+ 
+
+  def get_client_name(self): 
+    # injection de dépendance
+    # la classe BankAccount ne connâit que les signatures des méthodes publiques
+    # délégation du nom complet du client à l'objet client
+    return self.__owner.get_full_name() 
+
+cl = Client("matt", "lamam")
+# un compte a un client
+acc = BankAccount(200, cl)
+
+acc.get_client_name()
+# %%
+# héritage "simple"
+
+class Person:
+  def __init__(self, f, n):
+    self.__f = f
+    self.__n = n
+  
+  def get_full_name(self): 
+    return f"{self.__f.capitalize()} {self.__n.upper()}"
+
+class Client(Person):
+  # surcharge de méthode = on hérite de la méthode parente 
+  # et ajoute des comportements personnels
+  def __init__(self, _id, f, n):
+    self.__id = _id
+    # super(): appel à l'initialiseur de la classe mère (Person)
+    # fournit les attributs d'objet de l'objet courant (cl)
+    super().__init__(f, n)
+
+cl = Client(34534, "bob", "smith")
+# méthode héritée
+print(cl.get_full_name())
+# print(cl._Person__f)
+# %%
