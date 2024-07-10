@@ -195,3 +195,21 @@ cl = Client(34534, "bob", "smith", "1977-09-09")
 print(cl.get_full_name())
 print(cl.get_date_joint())
 print(cl.check_3month())
+
+# %%
+
+# en python tout est objet !!!!
+class Truc:
+  pass
+x = 1
+t = Truc()
+
+type(x), type(t)
+isinstance(t, Truc), isinstance(x, int)
+
+# conversion de 1 en "1"
+# instanciation d'un objet "1" 
+# à partir d'un paramètre 1 
+# du __init__ de la classe str
+_str = str(1)
+# %%
