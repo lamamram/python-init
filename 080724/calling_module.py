@@ -10,6 +10,7 @@ from math import sqrt
 print(truc)
 # print(ctrl_mean("1,-1"))
 print(sqrt(2))
+# pip install requests
 # r  = requests.get("https://dawan.fr")
 
 if __name__ == "__main__":

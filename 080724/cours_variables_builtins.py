@@ -33,7 +33,13 @@ x = 1;y=2
 # ex : python -c 'x=1;y=2;print(x,y)'
 
 # %%
+# attention aux noms de variables !!!
+print = "truc"
 
+print("ok") # ERROR
+
+
+# %%
 # chaines de caractère: str
 
 single = 'hello world'
