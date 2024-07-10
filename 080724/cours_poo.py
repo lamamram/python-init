@@ -164,6 +164,9 @@ print(cl.get_full_name())
 from datetime import datetime
  
 class Person:
+  """
+  class
+  """
   def __init__(self, f, n):
     self.__f = f
     self.__n = n
