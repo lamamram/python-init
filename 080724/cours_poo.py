@@ -92,11 +92,16 @@ class BankAccount(BankAccountAbstract):
     # çà fonctionne AUSSI avec alt_acc.__balance (censé être privé) !!!!
     return self.__balance + alt_acc.get_balance()
 
+  def __getitem__(self, ind: int):
+    return ind
+
 acc = BankAccount(34554) # exécute automatiquement la méthode __init__
 acc2 = BankAccount(3534, 200)
 print(acc.get_id())
 print(acc)
-acc + 
+acc + acc2
+
+acc[2]
 # print(acc), str(acc) # exécute __str__
 # %%
 
