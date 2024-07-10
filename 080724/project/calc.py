@@ -4,6 +4,9 @@ liste:
 - ctrl_mean
 """
 
+# from project.utils.display import pretty_print
+from .utils.display import pretty_print
+
 SIGN_NUMBERS = 2
 
 def ctrl_mean(values: str, delim: str=",", nb_sign: int=SIGN_NUMBERS, **kw):
@@ -16,6 +19,7 @@ def ctrl_mean(values: str, delim: str=",", nb_sign: int=SIGN_NUMBERS, **kw):
     numbers = []
     for value in values:
         value = value.strip()
+        if "debug" in kw: pretty_print(value)
         if value.isnumeric() or (value[0] == "-" and value[1:].isnumeric()):
             numbers.append(int(value))
         else:
