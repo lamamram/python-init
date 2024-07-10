@@ -28,7 +28,7 @@ class Cleaner:
         self.__text = re.sub(f" +", " ", self.__text)
     
     def __clean_little_words(self):
-        self.__text = " ".join(list(filter(lambda word: len(word) > 3, self.__text.split()))) 
+        self.__text = " ".join(filter(lambda word: len(word) > 3, self.__text.split())) 
     
     def clean(self):
         self.__clean_punc()
