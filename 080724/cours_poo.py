@@ -160,3 +160,35 @@ cl = Client(34534, "bob", "smith")
 print(cl.get_full_name())
 # print(cl._Person__f)
 # %%
+
+from datetime import datetime
+ 
+class Person:
+  def __init__(self, f, n):
+    self.__f = f
+    self.__n = n
+ 
+  def get_full_name(self):
+    return f"{self.__f.capitalize()} {self.__n.upper()}"
+ 
+class Client(Person):
+  __format = "%Y-%m-%d"
+
+  def __init__(self, _id, f, n, date_joint):
+    self.__id = _id
+    self.__date_joint = datetime.strptime(date_joint, self.__format)
+    super().__init__(f, n)
+ 
+  def get_date_joint (self) :
+      return self.__date_joint.strftime(self.__format)
+ 
+  def check_3month (self) :
+      now = datetime.now()
+      duree = now - self.__date_joint
+      return duree.days > 90
+ 
+cl = Client(34534, "bob", "smith", "1977-09-09")
+
+print(cl.get_full_name())
+print(cl.get_date_joint())
+print(cl.check_3month())
